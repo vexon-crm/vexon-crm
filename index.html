@@ -803,32 +803,70 @@ const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 const mem={};
 const store={get(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]??null},set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}},del(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}};
 let CUR=null,pt,clientSyncTimer=null,cloudWorkspaceData={};
+let cloudReady=false,cloudSaveBusy=false,cloudSaveQueued=false;
 const flush=()=>{if(CUR)store.set('vexon-ws:'+CUR,snap())};
-const persist=()=>{if(!CUR)return;clearTimeout(pt);pt=setTimeout(flush,250)};
-async function saveClientsCloud(silent=false){
-  if(!CUR)return false;
-  const payload={...cloudWorkspaceData,clients:clients.map(c=>({...c}))};
-  const {error}=await sb.from('crm_workspaces').upsert({user_id:CUR,data:payload,updated_at:new Date().toISOString()},{onConflict:'user_id'});
-  if(error){console.error('VEXON cloud clients save:',error);if(!silent)toast('Не удалось сохранить клиентов в облако: '+(error.message||'ошибка Supabase'));return false}
-  cloudWorkspaceData=payload;return true;
-}
-function scheduleClientSync(){
+const persist=()=>{
   if(!CUR)return;
-  clearTimeout(clientSyncTimer);
-  clientSyncTimer=setTimeout(()=>{saveClientsCloud(false)},500);
+  clearTimeout(pt);
+  pt=setTimeout(()=>{flush();if(cloudReady)scheduleWorkspaceSync()},250);
+};
+async function saveWorkspaceCloud(silent=false){
+  if(!CUR||!cloudReady)return false;
+  if(cloudSaveBusy){cloudSaveQueued=true;return true}
+  cloudSaveBusy=true;
+  const snapshot=JSON.parse(snap());
+  const payload={...cloudWorkspaceData,workspace:snapshot,clients:clients.map(c=>({...c}))};
+  const {error}=await sb.from('crm_workspaces').upsert(
+    {user_id:CUR,data:payload,updated_at:new Date().toISOString()},
+    {onConflict:'user_id'}
+  );
+  cloudSaveBusy=false;
+  if(error){
+    console.error('VEXON cloud workspace save:',error);
+    if(!silent)toast('Не удалось сохранить CRM в Supabase: '+(error.message||'ошибка'));
+    return false;
+  }
+  cloudWorkspaceData=payload;
+  if(cloudSaveQueued){cloudSaveQueued=false;scheduleWorkspaceSync()}
+  return true;
 }
+function scheduleWorkspaceSync(){
+  if(!CUR||!cloudReady)return;
+  clearTimeout(clientSyncTimer);
+  clientSyncTimer=setTimeout(()=>saveWorkspaceCloud(false),450);
+}
+// Совместимость с обработчиками клиентов в существующем интерфейсе.
+const scheduleClientSync=scheduleWorkspaceSync;
 async function loadClientsCloud(){
   if(!CUR)return;
+  cloudReady=false;
   const {data,error}=await sb.from('crm_workspaces').select('data').eq('user_id',CUR).maybeSingle();
-  if(error){console.error('VEXON cloud clients load:',error);toast('Не удалось загрузить клиентов из облака. Пока показаны локальные данные.');return}
+  if(error){
+    console.error('VEXON cloud workspace load:',error);
+    toast('Не удалось загрузить облачные данные. Проверьте соединение и права Supabase.');
+    cloudReady=true;
+    return;
+  }
   cloudWorkspaceData=data?.data&&typeof data.data==='object'&&!Array.isArray(data.data)?{...data.data}:{};
-  if(Array.isArray(cloudWorkspaceData.clients)){
+  if(cloudWorkspaceData.workspace&&typeof cloudWorkspaceData.workspace==='object'){
+    // Полная облачная копия — источник истины для всех модулей.
+    restore(JSON.stringify(cloudWorkspaceData.workspace));
+  }else if(Array.isArray(cloudWorkspaceData.clients)){
+    // Совместимость со старой версией: берём клиентов из облака,
+    // остальные разделы сохраняем из локальной копии и переносим целиком.
     setList(clients,cloudWorkspaceData.clients);
     flush();
+    cloudReady=true;
+    await saveWorkspaceCloud(true);
+    return;
   }else{
-    // Первый запуск синхронизации: переносим существующий локальный список в облако.
-    await saveClientsCloud(true);
+    // Первая миграция: сохраняем существующие локальные разделы целиком.
+    cloudReady=true;
+    await saveWorkspaceCloud(true);
+    return;
   }
+  flush();
+  cloudReady=true;
 }
 ['click','input','change','drop'].forEach(ev=>document.addEventListener(ev,persist,true));
 const INDS=['Торговля','Услуги','Производство','IT и разработка','Строительство','Образование','Медицина','Другое'];
@@ -911,7 +949,7 @@ function drawOB(){
 function finishOB(){
   setList(SOURCES,OB.src.length?OB.src:SRC0);const c=OB.cats.split(',').map(x=>x.trim()).filter(Boolean);setList(CATS,c.length?c:CAT0);
   setList(staff,[owner()]);OB.emps.filter(x=>x.n).forEach(x=>staff.push({id:++nid,name:x.n,role:x.r||'Сотрудник',dept:'Продажи',email:x.e,phone:'',plan:0,sales:0,status:'Не в сети',color:COLORS[nid%8]}));
-  ME.onboarded=true;flush();startApp();toast('Готово! Добавьте первого клиента');
+  ME.onboarded=true;flush();if(cloudReady)scheduleWorkspaceSync();startApp();toast('Готово! Добавьте первого клиента');
 }
 /* Резервная копия */
 A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`vexon-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
