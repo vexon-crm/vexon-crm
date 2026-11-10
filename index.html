@@ -519,7 +519,7 @@ A.client=b=>openClient(+b.dataset.id);
 A.newClient=()=>clientForm();
 A.editClient=b=>clientForm(+b.dataset.id);
 A.delClient=b=>{const id=+b.dataset.id;confirmBox(`Удалить клиента «${esc(cliOf(id).name)}» вместе со связанными сделками?`,()=>delClient(id))};
-function delClient(id){const i=clients.findIndex(c=>c.id===id);clients.splice(i,1);[dialogs,calls,hist,notes].forEach(a=>{for(let k=a.length-1;k>=0;k--)if(a[k].cid===id)a.splice(k,1)});tasks.forEach(t=>{if(t.cid===id)t.cid=null});for(let k=deals.length-1;k>=0;k--)if(deals[k].cid===id)deals.splice(k,1);toast('Клиент удалён');closeModal();V[cur]()}
+function delClient(id){const i=clients.findIndex(c=>c.id===id);if(i<0)return;clients.splice(i,1);[dialogs,calls,hist,notes].forEach(a=>{for(let k=a.length-1;k>=0;k--)if(a[k].cid===id)a.splice(k,1)});tasks.forEach(t=>{if(t.cid===id)t.cid=null});for(let k=deals.length-1;k>=0;k--)if(deals[k].cid===id)deals.splice(k,1);scheduleClientSync();toast('Клиент удалён');closeModal();V[cur]()}
 function clientForm(id){
   const c=id?cliOf(id):{name:'',phone:'',email:'',company:'',source:'Сайт',mgr:2,status:'Новый'};
   modal({title:id?'Редактирование клиента':'Новый клиент',body:`<form class="form" id="cf">${fld('f_name','Имя и фамилия',c.name,{full:1,ph:'Иван Петров'})}${fld('f_phone','Телефон',c.phone,{ph:'+7 ___ ___-__-__'})}${fld('f_email','Электронная почта',c.email,{type:'email'})}${fld('f_company','Компания',c.company)}${fld('f_source','Источник обращения',c.source,{type:'select',opts:SOURCES})}${fld('f_mgr','Ответственный менеджер',c.mgr,{type:'select',opts:mgrOpts()})}${fld('f_status','Статус',c.status,{type:'select',opts:CSTAT})}</form>`,
@@ -527,7 +527,7 @@ function clientForm(id){
      if(!val('f_name')){toast('Укажите имя клиента');return}
      const o={name:val('f_name'),phone:val('f_phone'),email:val('f_email'),company:val('f_company')||'Частное лицо',source:val('f_source'),mgr:+val('f_mgr'),status:val('f_status')};
      if(id)Object.assign(c,o);else{o.id=++nid;o.added=iso(0);clients.unshift(o);log(`добавил(а) клиента «${o.name}»`);fire('Создан клиент',{cid:o.id,mgr:o.mgr,what:o.name})}
-     closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
+     scheduleClientSync();closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
 }
 function openClient(id,tab='info'){
   const c=cliOf(id);if(!c)return;
@@ -802,9 +802,34 @@ const SUPABASE_ANON_KEY='sb_publishable_zeizsAlAla89gikbRd85ag_rQ_5j7XW';
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 const mem={};
 const store={get(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]??null},set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}},del(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}};
-let CUR=null,pt;
+let CUR=null,pt,clientSyncTimer=null,cloudWorkspaceData={};
 const flush=()=>{if(CUR)store.set('vexon-ws:'+CUR,snap())};
 const persist=()=>{if(!CUR)return;clearTimeout(pt);pt=setTimeout(flush,250)};
+async function saveClientsCloud(silent=false){
+  if(!CUR)return false;
+  const payload={...cloudWorkspaceData,clients:clients.map(c=>({...c}))};
+  const {error}=await sb.from('crm_workspaces').upsert({user_id:CUR,data:payload,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+  if(error){console.error('VEXON cloud clients save:',error);if(!silent)toast('Не удалось сохранить клиентов в облако: '+(error.message||'ошибка Supabase'));return false}
+  cloudWorkspaceData=payload;return true;
+}
+function scheduleClientSync(){
+  if(!CUR)return;
+  clearTimeout(clientSyncTimer);
+  clientSyncTimer=setTimeout(()=>{saveClientsCloud(false)},500);
+}
+async function loadClientsCloud(){
+  if(!CUR)return;
+  const {data,error}=await sb.from('crm_workspaces').select('data').eq('user_id',CUR).maybeSingle();
+  if(error){console.error('VEXON cloud clients load:',error);toast('Не удалось загрузить клиентов из облака. Пока показаны локальные данные.');return}
+  cloudWorkspaceData=data?.data&&typeof data.data==='object'&&!Array.isArray(data.data)?{...data.data}:{};
+  if(Array.isArray(cloudWorkspaceData.clients)){
+    setList(clients,cloudWorkspaceData.clients);
+    flush();
+  }else{
+    // Первый запуск синхронизации: переносим существующий локальный список в облако.
+    await saveClientsCloud(true);
+  }
+}
 ['click','input','change','drop'].forEach(ev=>document.addEventListener(ev,persist,true));
 const INDS=['Торговля','Услуги','Производство','IT и разработка','Строительство','Образование','Медицина','Другое'];
 const SIZES=['Только я','2–5','6–15','16–50','Больше 50'];
@@ -852,13 +877,13 @@ function showAuth(mode='login',notice=''){
     }};
 }
 function openSession(user,name='',company=''){
-  const uid=user.id,email=user.email||'';CUR=uid;
+  const uid=user.id,email=user.email||'';CUR=uid;cloudWorkspaceData={};
   const ws=store.get('vexon-ws:'+uid);
   if(!ws){const meta=user.user_metadata||{};resetME({login:email,email,name:name||meta.full_name||email,company:company||meta.company||'Моя компания',user_id:uid});emptyWorkspace();flush()}
   else{restore(ws);ME.login=email;ME.email=ME.email||email;ME.user_id=uid;if(name)ME.name=name;if(company)ME.company=company;flush()}
   ME.onboarded?startApp():onboarding();
 }
-function startApp(){$('#auth').hidden=true;$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
+async function startApp(){await loadClientsCloud();$('#auth').hidden=true;$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
 A.logout=async()=>{flush();const {error}=await sb.auth.signOut();if(error){toast('Не удалось выйти: '+authMessage(error));return}CUR=null;$('#mePop').hidden=true;showAuth('login')};
 /* Мастер настройки */
 let OB;
