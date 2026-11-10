@@ -1,4 +1,84 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style id="vexon-iphone-optimization">
+/* VEXON mobile refinement: iPhone / narrow touch screens */
+html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{min-width:0;overscroll-behavior-y:contain;-webkit-tap-highlight-color:transparent;}
+button,.btn,.ibtn,.nav button,.tabs button,.seg button,.chk{touch-action:manipulation;}
+input,select,textarea{font-size:16px;}
+@media (max-width:860px){
+  html,body{height:100%;height:100dvh;}
+  .app{height:100%;height:100dvh;min-height:0;}
+  .top{min-height:60px;padding-top:max(9px,env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));gap:7px;}
+  main{min-width:0;overflow-x:hidden;overscroll-behavior:contain;padding-top:14px;padding-bottom:calc(20px + env(safe-area-inset-bottom));}
+  .view,.card,.grid,.ph,.tools{min-width:0;max-width:100%;}
+  .ph{align-items:flex-start;gap:10px;margin-bottom:16px;}
+  .ph .acts{width:100%;margin-left:0;}
+  .ph .acts .btn{flex:1;justify-content:center;}
+  .g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .g2,.g32{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .card{padding:14px;border-radius:15px;}
+  .kpi .v{font-size:23px;}
+  .tools{gap:8px;}
+  .tools input,.tools select{width:100%;min-height:42px;}
+  .tools .grow{min-width:0;flex-basis:100%;}
+  .tw{max-width:100%;-webkit-overflow-scrolling:touch;}
+  .tw table{min-width:620px;}
+  .ov{padding:0;align-items:end;}
+  .modal,.modal.wide{width:100%;max-width:100%;max-height: min(92dvh,900px);border-radius:20px 20px 0 0;padding-bottom:env(safe-area-inset-bottom);}
+  .mh{padding:15px 16px;}
+  .mb{padding:16px;}
+  .mf{padding:12px 16px;}
+  .mf .btn{min-height:42px;}
+  .chat{height:calc(100dvh - 142px);min-height:0;}
+  .chat form{padding-bottom:max(12px,env(safe-area-inset-bottom));}
+  .chat form input{font-size:16px;}
+  .callbtn{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));}
+  .auth{padding-top:max(12px,env(safe-area-inset-top));padding-bottom:max(12px,env(safe-area-inset-bottom));}
+  .auth-box{border-radius:18px;}
+  .auth-form{padding:20px;}
+  .auth-pitch{padding:18px 20px;}
+}
+@media (max-width:520px){
+  .top{gap:6px;}
+  .search{flex:1 1 0;}
+  .search input{min-height:40px;padding-right:8px;}
+  .top .ibtn{width:38px;height:38px;}
+  main{padding-left:12px;padding-right:12px;}
+  .ph h1{font-size:21px;line-height:1.2;}
+  .ph p{font-size:12px;}
+  .g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+  .card{padding:12px;}
+  .kpi .l{font-size:11px;}
+  .kpi .v{font-size:21px;}
+  .kpi .ic{width:30px;height:30px;right:10px;top:10px;}
+  .form{grid-template-columns:minmax(0,1fr);gap:12px;}
+  .fld.full{grid-column:auto;}
+  .fld input,.fld select,.fld textarea{width:100%;min-height:44px;font-size:16px;}
+  .btn{min-height:40px;padding:9px 12px;}
+  .seg{max-width:100%;}
+  .tabs{max-width:100%;}
+  .cal{gap:3px;}
+  .cal .d{min-height:54px;padding:3px;border-radius:7px;}
+  .cal .h,.cal .d>span{font-size:10px;}
+  .kan{gap:10px;}
+  .kan .col{flex-basis:86vw;}
+  .chat{height:calc(100dvh - 132px);}
+  .chat .hd{padding:11px 12px;}
+  .chat .ms{padding:12px;}
+  .msg{max-width:90%;}
+  .emprow{grid-template-columns:minmax(0,1fr);}
+  .chrow{grid-template-columns:auto minmax(0,1fr);gap:8px;}
+  .chrow>*:last-child{grid-column:2;}
+}
+@media (max-width:360px){
+  .g4,.g5{grid-template-columns:minmax(0,1fr);}
+  .company{display:none;}
+  .top{gap:5px;}
+  .me{display:none;}
+}
+</style>
+
+</head><body>
 <title>VEXON</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
@@ -302,7 +382,6 @@ tr.click{cursor:pointer}
 <div id="auth" hidden></div>
 <input type="file" id="rfile" accept=".json,application/json" hidden>
 <div id="layer"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const TODAY=new Date();TODAY.setHours(12,0,0,0);
 const iso=n=>{const d=new Date(TODAY);d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
@@ -519,7 +598,7 @@ A.client=b=>openClient(+b.dataset.id);
 A.newClient=()=>clientForm();
 A.editClient=b=>clientForm(+b.dataset.id);
 A.delClient=b=>{const id=+b.dataset.id;confirmBox(`Удалить клиента «${esc(cliOf(id).name)}» вместе со связанными сделками?`,()=>delClient(id))};
-function delClient(id){const i=clients.findIndex(c=>c.id===id);if(i<0)return;clients.splice(i,1);[dialogs,calls,hist,notes].forEach(a=>{for(let k=a.length-1;k>=0;k--)if(a[k].cid===id)a.splice(k,1)});tasks.forEach(t=>{if(t.cid===id)t.cid=null});for(let k=deals.length-1;k>=0;k--)if(deals[k].cid===id)deals.splice(k,1);scheduleClientSync();toast('Клиент удалён');closeModal();V[cur]()}
+function delClient(id){const i=clients.findIndex(c=>c.id===id);clients.splice(i,1);[dialogs,calls,hist,notes].forEach(a=>{for(let k=a.length-1;k>=0;k--)if(a[k].cid===id)a.splice(k,1)});tasks.forEach(t=>{if(t.cid===id)t.cid=null});for(let k=deals.length-1;k>=0;k--)if(deals[k].cid===id)deals.splice(k,1);toast('Клиент удалён');closeModal();V[cur]()}
 function clientForm(id){
   const c=id?cliOf(id):{name:'',phone:'',email:'',company:'',source:'Сайт',mgr:2,status:'Новый'};
   modal({title:id?'Редактирование клиента':'Новый клиент',body:`<form class="form" id="cf">${fld('f_name','Имя и фамилия',c.name,{full:1,ph:'Иван Петров'})}${fld('f_phone','Телефон',c.phone,{ph:'+7 ___ ___-__-__'})}${fld('f_email','Электронная почта',c.email,{type:'email'})}${fld('f_company','Компания',c.company)}${fld('f_source','Источник обращения',c.source,{type:'select',opts:SOURCES})}${fld('f_mgr','Ответственный менеджер',c.mgr,{type:'select',opts:mgrOpts()})}${fld('f_status','Статус',c.status,{type:'select',opts:CSTAT})}</form>`,
@@ -527,7 +606,7 @@ function clientForm(id){
      if(!val('f_name')){toast('Укажите имя клиента');return}
      const o={name:val('f_name'),phone:val('f_phone'),email:val('f_email'),company:val('f_company')||'Частное лицо',source:val('f_source'),mgr:+val('f_mgr'),status:val('f_status')};
      if(id)Object.assign(c,o);else{o.id=++nid;o.added=iso(0);clients.unshift(o);log(`добавил(а) клиента «${o.name}»`);fire('Создан клиент',{cid:o.id,mgr:o.mgr,what:o.name})}
-     scheduleClientSync();closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
+     closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
 }
 function openClient(id,tab='info'){
   const c=cliOf(id);if(!c)return;
@@ -773,11 +852,11 @@ V.settings=()=>{
   const sw=(g,k,l,d)=>`<div class="row"><div class="grow"><b>${l}</b><small>${d}</small></div><button class="sw ${SET[g][k]?'on':''}" data-act="sw" data-g="${g}" data-k="${k}" role="switch" aria-checked="${SET[g][k]}" aria-label="${l}"></button></div>`;
   const P={
    company:`<div class="form">${fld('c_n','Название компании',ME.company,{full:1})}${fld('c_ind','Сфера деятельности',ME.industry||INDS[0],{type:'select',opts:INDS})}${fld('c_i','ИНН',ME.inn)}${fld('c_c','Город',ME.city)}${fld('c_ph','Телефон компании',ME.cphone)}${fld('c_m','Почта компании',ME.cemail)}${fld('c_s','Сайт',ME.site)}${fld('c_a','Адрес',ME.addr,{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button></div><h4 style="margin:24px 0 8px">Источники клиентов и категории</h4><div class="form">${fld('c_src','Источники (через запятую)',SOURCES.join(', '),{full:1})}${fld('c_cat','Категории товаров (через запятую)',CATS.join(', '),{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveLists">Сохранить списки</button></div>`,
-   profile:`<div class="form">${fld('u_l','Электронная почта',ME.login,{dis:1})}${fld('u_n','Имя и фамилия',ME.name)}${fld('u_r','Должность',ME.position)}${fld('u_e','Почта',ME.email,{type:'email'})}${fld('u_p','Телефон',ME.phone)}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button> <button class="btn" data-act="chPw">Сменить пароль</button></div>`,
+   profile:`<div class="form">${fld('u_l','Логин',ME.login,{dis:1})}${fld('u_n','Имя и фамилия',ME.name)}${fld('u_r','Должность',ME.position)}${fld('u_e','Почта',ME.email,{type:'email'})}${fld('u_p','Телефон',ME.phone)}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button> <button class="btn" data-act="chPw">Сменить пароль</button></div>`,
    integr:`<div>${['tg','wa','mail'].map(k=>{const c=ME.ch[k];return `<div class="chrow"><span class="chb" style="background:${CH[k].c};width:30px;height:30px;font-size:14px">${CH[k].l}</span><div style="min-width:0"><b>${CHINFO[k].n}</b> <span class="pill ${c.on?'ok':'gray'}">${c.on?'Подключено':'Не подключено'}</span><div class="mut" style="font-size:12px;margin-top:2px">${c.on?esc(c.v):CHINFO[k].hint}</div>${c.on?'':`<input id="ch_${k}" placeholder="${CHINFO[k].ph}" style="margin-top:8px" aria-label="${CHINFO[k].lb}">`}</div>${c.on?`<button class="btn sm dng" data-act="chOff" data-k="${k}">Отключить</button>`:`<button class="btn sm pri" data-act="chOn" data-k="${k}">Подключить</button>`}</div>`}).join('')}</div><p class="mut">Подключённый канал появляется в разделе «Сообщения»: переписка ведётся в VEXON и сохраняется в карточке клиента. Токены и пароли не сохраняются. Автоматическая отправка и приём сообщений в Telegram и WhatsApp включатся вместе с серверной частью.</p>`,
    notif:`<div class="list">${sw('n','newDeal','Новые сделки','Сообщать о каждой новой заявке')}${sw('n','task','Задачи','Напоминать о сроках и просрочке')}${sw('n','miss','Пропущенные звонки','Мгновенное уведомление менеджеру')}${sw('n','mail','Ежедневный отчёт на почту','Сводка в 9:00')}</div>`,
    look:`<div class="row"><div class="grow"><b>Тема интерфейса</b><small>Сейчас: ${theme==='dark'?'тёмная':'светлая'}</small></div><div class="seg"><button data-act="th" data-t="dark" class="${theme==='dark'?'on':''}">Тёмная</button><button data-act="th" data-t="light" class="${theme==='light'?'on':''}">Светлая</button></div></div>`,
-   data:`<div class="list"><div class="row"><div class="grow"><b>Аккаунт: ${esc(ME.login)}</b><small>Вход защищён Supabase Auth</small></div><button class="btn" data-act="logout">Выйти</button></div><div class="row"><div class="grow"><b>Резервная копия</b><small>Скачайте файл со всеми данными аккаунта</small></div><button class="btn" data-act="backup">${ico('down')}Скачать</button></div><div class="row"><div class="grow"><b>Восстановить из копии</b><small>Заменит текущие данные содержимым файла</small></div><button class="btn" data-act="restoreFile">Выбрать файл</button></div><div class="row"><div class="grow"><b>Очистить все данные</b><small>Удалит клиентов, сделки, задачи, товары и остальное. Аккаунт останется.</small></div><button class="btn dng" data-act="askClear">Очистить</button></div></div><p class="mut"><b>Где хранятся данные.</b> Аккаунт и пароль хранятся в Supabase Auth. Данные CRM пока сохраняются локально в этом браузере и на этом устройстве. Для синхронизации клиентов, сделок, задач и остальных разделов между устройствами потребуется отдельно подключить таблицы базы данных.</p>`
+   data:`<div class="list"><div class="row"><div class="grow"><b>Аккаунт: ${esc(ME.login)}</b><small>Все данные принадлежат этому логину</small></div><button class="btn" data-act="logout">Выйти</button></div><div class="row"><div class="grow"><b>Резервная копия</b><small>Скачайте файл со всеми данными аккаунта</small></div><button class="btn" data-act="backup">${ico('down')}Скачать</button></div><div class="row"><div class="grow"><b>Восстановить из копии</b><small>Заменит текущие данные содержимым файла</small></div><button class="btn" data-act="restoreFile">Выбрать файл</button></div><div class="row"><div class="grow"><b>Очистить все данные</b><small>Удалит клиентов, сделки, задачи, товары и остальное. Аккаунт останется.</small></div><button class="btn dng" data-act="askClear">Очистить</button></div></div><p class="mut"><b>Где хранятся данные.</b> В этом браузере, на этом устройстве, под вашим логином. Пароль хранится только в виде хеша. На другом устройстве аккаунт не появится: переносите данные через резервную копию. Для работы с разных устройств и командой нужна серверная база данных.</p>`
   };
   $('#view').innerHTML=`<div class="ph"><div><h1>Настройки</h1><p>Параметры компании и аккаунта</p></div></div><div class="card"><div class="tabs">${tabs.map(t=>`<button data-act="stab" data-t="${t[0]}" class="${SET.tab===t[0]?'on':''}">${t[1]}</button>`).join('')}</div><div style="max-width:720px">${P[SET.tab]}</div></div>`;
 };
@@ -791,83 +870,20 @@ A.saveSet=()=>{
   if($('#u_n')){if(!val('u_n')){toast('Укажите имя');return}Object.assign(ME,{name:val('u_n'),position:val('u_r'),phone:val('u_p'),email:val('u_e')});const o=staff.find(s=>s.id===1);if(o){o.name=ME.name;o.role=ME.position;o.phone=ME.phone;o.email=ME.email}}
   paintShell();toast('Сохранено')};
 A.saveLists=()=>{const sp=s=>s.split(',').map(x=>x.trim()).filter(Boolean),a=sp(val('c_src')),b=sp(val('c_cat'));if(!a.length||!b.length){toast('Списки не должны быть пустыми');return}setList(SOURCES,a);setList(CATS,b);toast('Списки сохранены')};
-A.chPw=()=>modal({title:'Смена пароля',body:`<div class="form">${fld('w_n','Новый пароль','',{type:'password',full:1})}${fld('w_n2','Повторите пароль','',{type:'password',full:1})}</div><div class="err" id="werr"></div>`,
-  foot:[{label:'Отмена',fn:closeModal},{label:'Сменить',cls:'pri',fn:async()=>{const n=$('#w_n').value;
+A.chPw=()=>modal({title:'Смена пароля',body:`<div class="form">${fld('w_o','Текущий пароль','',{type:'password',full:1})}${fld('w_n','Новый пароль','',{type:'password'})}${fld('w_n2','Повторите','',{type:'password'})}</div><div class="err" id="werr"></div>`,
+  foot:[{label:'Отмена',fn:closeModal},{label:'Сменить',cls:'pri',fn:async()=>{const u=getUsers(),me=u[ME.login],n=$('#w_n').value;
+    if(!me||me.hash!==await hash(ME.login+':'+$('#w_o').value)){$('#werr').textContent='Текущий пароль неверный';return}
     if(n.length<6){$('#werr').textContent='Новый пароль не короче 6 символов';return}if(n!==$('#w_n2').value){$('#werr').textContent='Пароли не совпадают';return}
-    const {error}=await sb.auth.updateUser({password:n});if(error){$('#werr').textContent='Не удалось изменить пароль: '+error.message;return}closeModal();toast('Пароль изменён')}}]});
+    me.hash=await hash(ME.login+':'+n);store.set('vexon-users',JSON.stringify(u));closeModal();toast('Пароль изменён')}}]});
 A.askClear=()=>confirmBox('Все клиенты, сделки, задачи, товары и другие данные будут удалены. Продолжить?',()=>{emptyWorkspace();paintShell();drawNav();toast('Данные очищены');go('home')},'Очистить');
-/* ===== Supabase Auth + вход, регистрация, мастер настройки ===== */
-const SUPABASE_URL='https://bhgspovnxydbcncgjibf.supabase.co';
-const SUPABASE_ANON_KEY='sb_publishable_zeizsAlAla89gikbRd85ag_rQ_5j7XW';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+/* ===== Вход, регистрация, мастер настройки ===== */
 const mem={};
 const store={get(k){try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]??null},set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}},del(k){delete mem[k];try{localStorage.removeItem(k)}catch(e){}}};
-let CUR=null,pt,clientSyncTimer=null,cloudWorkspaceData={};
-let cloudReady=false,cloudSaveBusy=false,cloudSaveQueued=false;
+const getUsers=()=>{try{return JSON.parse(store.get('vexon-users')||'{}')}catch(e){return {}}};
+async function hash(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return 'x'+h}}
+let CUR=null,pt;
 const flush=()=>{if(CUR)store.set('vexon-ws:'+CUR,snap())};
-const persist=()=>{
-  if(!CUR)return;
-  clearTimeout(pt);
-  pt=setTimeout(()=>{flush();if(cloudReady)scheduleWorkspaceSync()},250);
-};
-async function saveWorkspaceCloud(silent=false){
-  if(!CUR||!cloudReady)return false;
-  if(cloudSaveBusy){cloudSaveQueued=true;return true}
-  cloudSaveBusy=true;
-  const snapshot=JSON.parse(snap());
-  const payload={...cloudWorkspaceData,workspace:snapshot,clients:clients.map(c=>({...c}))};
-  const {error}=await sb.from('crm_workspaces').upsert(
-    {user_id:CUR,data:payload,updated_at:new Date().toISOString()},
-    {onConflict:'user_id'}
-  );
-  cloudSaveBusy=false;
-  if(error){
-    console.error('VEXON cloud workspace save:',error);
-    if(!silent)toast('Не удалось сохранить CRM в Supabase: '+(error.message||'ошибка'));
-    return false;
-  }
-  cloudWorkspaceData=payload;
-  if(cloudSaveQueued){cloudSaveQueued=false;scheduleWorkspaceSync()}
-  return true;
-}
-function scheduleWorkspaceSync(){
-  if(!CUR||!cloudReady)return;
-  clearTimeout(clientSyncTimer);
-  clientSyncTimer=setTimeout(()=>saveWorkspaceCloud(false),450);
-}
-// Совместимость с обработчиками клиентов в существующем интерфейсе.
-const scheduleClientSync=scheduleWorkspaceSync;
-async function loadClientsCloud(){
-  if(!CUR)return;
-  cloudReady=false;
-  const {data,error}=await sb.from('crm_workspaces').select('data').eq('user_id',CUR).maybeSingle();
-  if(error){
-    console.error('VEXON cloud workspace load:',error);
-    toast('Не удалось загрузить облачные данные. Проверьте соединение и права Supabase.');
-    cloudReady=true;
-    return;
-  }
-  cloudWorkspaceData=data?.data&&typeof data.data==='object'&&!Array.isArray(data.data)?{...data.data}:{};
-  if(cloudWorkspaceData.workspace&&typeof cloudWorkspaceData.workspace==='object'){
-    // Полная облачная копия — источник истины для всех модулей.
-    restore(JSON.stringify(cloudWorkspaceData.workspace));
-  }else if(Array.isArray(cloudWorkspaceData.clients)){
-    // Совместимость со старой версией: берём клиентов из облака,
-    // остальные разделы сохраняем из локальной копии и переносим целиком.
-    setList(clients,cloudWorkspaceData.clients);
-    flush();
-    cloudReady=true;
-    await saveWorkspaceCloud(true);
-    return;
-  }else{
-    // Первая миграция: сохраняем существующие локальные разделы целиком.
-    cloudReady=true;
-    await saveWorkspaceCloud(true);
-    return;
-  }
-  flush();
-  cloudReady=true;
-}
+const persist=()=>{if(!CUR)return;clearTimeout(pt);pt=setTimeout(flush,250)};
 ['click','input','change','drop'].forEach(ev=>document.addEventListener(ev,persist,true));
 const INDS=['Торговля','Услуги','Производство','IT и разработка','Строительство','Образование','Медицина','Другое'];
 const SIZES=['Только я','2–5','6–15','16–50','Больше 50'];
@@ -883,46 +899,23 @@ function connectCh(k,v){v=(v||'').trim();
   log(`подключил(а) канал «${CHINFO[k].n}»`);return ''}
 const chOn=k=>!!ME.ch?.[k]?.on;
 const chList=()=>['tg','wa','mail'].filter(chOn);
-function authMessage(e){
-  const m=(e?.message||'').toLowerCase();
-  if(m.includes('already registered')||m.includes('already been registered'))return 'Аккаунт с этой почтой уже существует. Попробуйте войти.';
-  if(m.includes('invalid login credentials'))return 'Неверная почта или пароль.';
-  if(m.includes('email not confirmed'))return 'Сначала подтвердите почту по ссылке из письма.';
-  if(m.includes('password'))return 'Пароль должен содержать не менее 6 символов.';
-  return e?.message||'Не удалось выполнить запрос. Проверьте соединение и настройки Supabase.';
-}
-function showAuth(mode='login',notice=''){
+function showAuth(mode='login'){
   $('#app').hidden=true;const a=$('#auth');a.hidden=false;a.className='auth';const reg=mode==='reg';
-  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в VEXON'}</h2><p class="mut" style="margin:0">${reg?'Укажите электронную почту и пароль. Данные бизнеса вы внесёте на следующем шаге.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_name','Ваше имя и фамилия','',{ph:'Иван Петров'})+fld('r_co','Название компании','',{ph:'ООО «Ромашка»'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'}):''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div></form></div>`;
+  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в VEXON'}</h2><p class="mut" style="margin:0">${reg?'Придумайте логин и пароль. Данные бизнеса вы внесёте на следующем шаге.':'Введите логин и пароль от вашего аккаунта.'}</p>${reg?fld('r_name','Ваше имя и фамилия','',{ph:'Иван Петров'})+fld('r_co','Название компании','',{ph:'ООО «Ромашка»'}):''}${fld('r_login','Логин','',{ph:'ivan_petrov'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'}):''}<div class="err" id="aerr" role="alert"></div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div></form></div>`;
   $('#asw').onclick=()=>showAuth(reg?'login':'reg');
-  $('#af').onsubmit=async e=>{e.preventDefault();const btn=$('#af').querySelector('button[type="submit"],button:not([type])');const err=t=>{$('#aerr').textContent=t};
-    const email=val('r_email').trim().toLowerCase(),pw=$('#r_pass').value;
-    if(!/^\S+@\S+\.\S+$/.test(email))return err('Введите корректную электронную почту.');
-    if(pw.length<6)return err('Пароль должен быть не короче 6 символов.');
-    if(reg){const nm=val('r_name'),co=val('r_co');if(!nm)return err('Укажите имя');if(!co)return err('Укажите название компании');if(pw!==$('#r_pass2').value)return err('Пароли не совпадают');
-      btn.disabled=true;btn.textContent='Создаём аккаунт…';
-      const {data,error}=await sb.auth.signUp({email,password:pw,options:{data:{full_name:nm,company:co},emailRedirectTo:location.href.split('#')[0]}});
-      btn.disabled=false;btn.textContent='Создать аккаунт';
-      if(error)return err(authMessage(error));
-      if(data.session&&data.user){openSession(data.user,nm,co)}
-      else{showAuth('login','Аккаунт создан. Проверьте почту и перейдите по ссылке подтверждения, затем войдите.');}
-    }else{
-      btn.disabled=true;btn.textContent='Входим…';
-      const {data,error}=await sb.auth.signInWithPassword({email,password:pw});
-      btn.disabled=false;btn.textContent='Войти';
-      if(error)return err(authMessage(error));
-      if(data.user)openSession(data.user);
-    }};
+  $('#af').onsubmit=async e=>{e.preventDefault();const err=t=>{$('#aerr').textContent=t};
+    const lg=val('r_login').toLowerCase(),pw=$('#r_pass').value,users=getUsers();
+    if(!/^[a-z0-9_.-]{3,32}$/.test(lg))return err('Логин: 3–32 символа, латиница, цифры, точка, дефис или подчёркивание');
+    if(reg){const nm=val('r_name'),co=val('r_co');if(!nm)return err('Укажите имя');if(!co)return err('Укажите название компании');if(pw.length<6)return err('Пароль должен быть не короче 6 символов');if(pw!==$('#r_pass2').value)return err('Пароли не совпадают');if(users[lg])return err('Такой логин уже занят. Выберите другой или войдите.');
+      users[lg]={name:nm,hash:await hash(lg+':'+pw)};store.set('vexon-users',JSON.stringify(users));store.set('vexon-session',lg);CUR=lg;
+      resetME({login:lg,name:nm,company:co});emptyWorkspace();flush();onboarding()}
+    else{const u=users[lg];if(!u||u.hash!==await hash(lg+':'+pw))return err('Неверный логин или пароль');store.set('vexon-session',lg);openSession(lg)}};
 }
-function openSession(user,name='',company=''){
-  const uid=user.id,email=user.email||'';CUR=uid;cloudWorkspaceData={};
-  const ws=store.get('vexon-ws:'+uid);
-  if(!ws){const meta=user.user_metadata||{};resetME({login:email,email,name:name||meta.full_name||email,company:company||meta.company||'Моя компания',user_id:uid});emptyWorkspace();flush()}
-  else{restore(ws);ME.login=email;ME.email=ME.email||email;ME.user_id=uid;if(name)ME.name=name;if(company)ME.company=company;flush()}
-  ME.onboarded?startApp():onboarding();
-}
-async function startApp(){await loadClientsCloud();$('#auth').hidden=true;$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
-A.logout=async()=>{flush();const {error}=await sb.auth.signOut();if(error){toast('Не удалось выйти: '+authMessage(error));return}CUR=null;$('#mePop').hidden=true;showAuth('login')};
+function openSession(lg){CUR=lg;const ws=store.get('vexon-ws:'+lg);
+  if(!ws){const u=getUsers()[lg];resetME({login:lg,name:u?.name||lg,company:'Моя компания'});emptyWorkspace();flush()}else restore(ws);
+  ME.onboarded?startApp():onboarding()}
+function startApp(){$('#auth').hidden=true;$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
+A.logout=()=>{flush();store.del('vexon-session');CUR=null;$('#mePop').hidden=true;showAuth('login')};
 /* Мастер настройки */
 let OB;
 function onboarding(){OB={step:0,emps:[{n:'',r:'',e:''}],src:[...SOURCES],cats:CATS.join(', '),chv:{}};drawOB()}
@@ -949,13 +942,13 @@ function drawOB(){
 function finishOB(){
   setList(SOURCES,OB.src.length?OB.src:SRC0);const c=OB.cats.split(',').map(x=>x.trim()).filter(Boolean);setList(CATS,c.length?c:CAT0);
   setList(staff,[owner()]);OB.emps.filter(x=>x.n).forEach(x=>staff.push({id:++nid,name:x.n,role:x.r||'Сотрудник',dept:'Продажи',email:x.e,phone:'',plan:0,sales:0,status:'Не в сети',color:COLORS[nid%8]}));
-  ME.onboarded=true;flush();if(cloudReady)scheduleWorkspaceSync();startApp();toast('Готово! Добавьте первого клиента');
+  ME.onboarded=true;flush();startApp();toast('Готово! Добавьте первого клиента');
 }
 /* Резервная копия */
 A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`vexon-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
 A.restoreFile=()=>$('#rfile').click();
 /* Запуск */
-async function init(){
+function init(){
   $('#themeBtn').onclick=()=>setTheme(theme==='dark'?'light':'dark');
   $('#menuBtn').onclick=openSide;$('#scrim').onclick=closeSide;
   $('#bellBtn').onclick=e=>{e.stopPropagation();drawBell();const p=$('#bellPop');p.hidden=!p.hidden};
@@ -966,7 +959,8 @@ async function init(){
   ['home','analytics','staff','finance'].forEach(k=>{const f=V[k];V[k]=()=>{recompute();f()}});
   window.addEventListener('pagehide',flush);
   setTheme(theme);
-  try{const {data,error}=await sb.auth.getSession();if(error)throw error;if(data.session?.user)openSession(data.session.user);else showAuth('login')}catch(e){showAuth('login','Не удалось подключиться к Supabase: '+authMessage(e))}
+  const s=store.get('vexon-session');
+  if(s&&getUsers()[s])openSession(s);else showAuth('login');
 }
 init();
 </script>
