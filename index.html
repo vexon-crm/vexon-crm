@@ -262,9 +262,9 @@ tr.click{cursor:pointer}
 .legal-head{position:sticky;top:0;display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line);z-index:1}
 .legal-head h2{font-size:18px}.legal-head button{margin-left:auto;border:0;background:none;color:var(--mut);font-size:24px}
 .legal-body{padding:20px;line-height:1.65;font-size:13px}.legal-body h3{font-size:15px;margin:18px 0 6px}.legal-body p{margin:7px 0}.legal-body ul{padding-left:20px}
-.cookie-banner{position:fixed;z-index:450;left:16px;right:16px;bottom:16px;max-width:900px;margin:auto;padding:16px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);display:flex;gap:16px;align-items:center;justify-content:space-between}
-.cookie-banner p{margin:0;color:var(--mut);font-size:12px}.cookie-actions{display:flex;gap:8px;flex-wrap:wrap;flex:none}
-@media(max-width:640px){.cookie-banner{left:10px;right:10px;bottom:10px;display:block}.cookie-actions{margin-top:10px}.legal-body{padding:16px}}
+.cookie-banner{position:fixed;z-index:600;left:16px;right:16px;bottom:18px;width:min(760px,calc(100% - 32px));margin:auto;padding:20px 22px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.32);display:flex;gap:22px;align-items:center;justify-content:space-between;animation:in .22s ease-out}
+.cookie-banner b{display:block;font-size:15px;margin-bottom:6px}.cookie-banner p{margin:0;color:var(--mut);font-size:12px;line-height:1.55}.cookie-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:none}.cookie-actions .btn{white-space:nowrap}
+@media(max-width:640px){.cookie-banner{left:10px;right:10px;bottom:10px;width:calc(100% - 20px);display:block;padding:17px}.cookie-actions{margin-top:13px}.cookie-actions .btn{flex:1;justify-content:center}.legal-body{padding:16px}}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -943,10 +943,16 @@ const LEGAL_DOCS={
  <p>Согласие оформляется отдельно от принятия Условий использования. Факт его получения должен фиксироваться Оператором и храниться способом, позволяющим подтвердить дату, версию текста и волеизъявление пользователя.</p>`}
 };
 function openLegalDoc(key){const d=LEGAL_DOCS[key];if(!d)return;let root=document.getElementById('legalOverlay');if(!root){root=document.createElement('div');root.id='legalOverlay';root.className='legal-overlay';root.hidden=true;root.innerHTML='<section class="legal-dialog" role="dialog" aria-modal="true" aria-labelledby="legalTitle"><div class="legal-head"><h2 id="legalTitle"></h2><button type="button" id="legalClose" aria-label="Закрыть">×</button></div><div class="legal-body" id="legalBody"></div></section>';document.body.appendChild(root);root.addEventListener('click',e=>{if(e.target===root||e.target.id==='legalClose')root.hidden=true})}root.querySelector('#legalTitle').textContent=d.title;root.querySelector('#legalBody').innerHTML=d.html;root.hidden=false}
+function showCookieNotice(){
+ const key='vexon-cookie-notice-v1';let cookieSeen=false;try{cookieSeen=!!localStorage.getItem(key)}catch(e){}
+ const auth=document.getElementById('auth');if(cookieSeen||!auth||auth.hidden){document.getElementById('cookieBanner')?.remove();return}
+ if(document.getElementById('cookieBanner'))return;
+ const b=document.createElement('section');b.className='cookie-banner';b.id='cookieBanner';b.setAttribute('role','region');b.setAttribute('aria-label','Уведомление об использовании cookie');
+ b.innerHTML='<div><b>Мы используем cookie-файлы</b><p>VEXON использует необходимые cookie и похожие технологии хранения, чтобы обеспечивать вход в аккаунт, сохранять настройки и поддерживать работу CRM. Рекламные и необязательные аналитические cookie сейчас не используются. Нажимая «Принять», вы подтверждаете, что ознакомились с уведомлением. <button type="button" class="link" data-legal="cookies">Политика Cookie</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Принять</button></div>';
+ document.body.appendChild(b);document.getElementById('cookieAccept').onclick=()=>{try{localStorage.setItem(key,JSON.stringify({acknowledged:true,at:new Date().toISOString(),version:LEGAL_VERSION}))}catch(e){}b.remove()};
+}
 function initLegalUi(){
  document.addEventListener('click',e=>{const a=e.target.closest('[data-legal]');if(a){e.preventDefault();openLegalDoc(a.dataset.legal)}});
- const key='vexon-cookie-notice-v1';
- let cookieSeen=false;try{cookieSeen=!!localStorage.getItem(key)}catch(e){}if(!cookieSeen){const b=document.createElement('section');b.className='cookie-banner';b.id='cookieBanner';b.innerHTML='<div><b>Технологии хранения</b><p>VEXON использует необходимые механизмы браузера для входа, сохранения настроек и работы CRM. Необязательные рекламные и аналитические cookie сейчас не подключены. <button type="button" class="link" data-legal="cookies">Подробнее</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Понятно</button></div>';document.body.appendChild(b);document.getElementById('cookieAccept').onclick=()=>{try{localStorage.setItem(key,JSON.stringify({acknowledged:true,at:new Date().toISOString(),version:LEGAL_VERSION}))}catch(e){}b.remove()}}
  const cs=document.getElementById('cookieSettings');if(cs)cs.onclick=()=>openLegalDoc('cookies');
 }
 function authMessage(e){
@@ -960,6 +966,7 @@ function authMessage(e){
 function showAuth(mode='login',notice=''){
   $('#app').hidden=true;const a=$('#auth');a.hidden=false;a.className='auth';const reg=mode==='reg';
   a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в VEXON'}</h2><p class="mut" style="margin:0">${reg?'Для регистрации нужны только имя, фамилия, телефон, почта и пароль.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_first','Имя','',{ph:'Иван'})+fld('r_last','Фамилия','',{ph:'Иванов'})+fld('r_phone','Телефон','',{type:'tel',ph:'+7 900 000-00-00'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'})+`<label class="legal-check"><input id="r_terms" type="checkbox" required><span>Принимаю <a href="#" data-legal="terms">Условия использования</a> и подтверждаю ознакомление с <a href="#" data-legal="privacy">Политикой конфиденциальности</a>.</span></label><label class="legal-check"><input id="r_pd" type="checkbox" required><span>Даю отдельное согласие на обработку моих персональных данных в целях регистрации и предоставления доступа к CRM согласно <a href="#" data-legal="pd">Согласию на обработку персональных данных</a>.</span></label>`:''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div><div class="legal-links"><button type="button" data-legal="privacy">Политика конфиденциальности</button><button type="button" data-legal="terms">Условия использования</button><button type="button" data-legal="cookies">Политика Cookie</button></div></form></div>`;
+  showCookieNotice();
   $('#asw').onclick=()=>showAuth(reg?'login':'reg');
   $('#af').onsubmit=async e=>{e.preventDefault();const btn=$('#af').querySelector('button[type="submit"],button:not([type])');const err=t=>{$('#aerr').textContent=t};
     const email=val('r_email').trim().toLowerCase(),pw=$('#r_pass').value;
@@ -993,7 +1000,7 @@ function openSession(user,name='',company=''){
   else{restore(ws);ME.login=email;ME.email=ME.email||email;ME.user_id=uid;if(name)ME.name=name;if(company)ME.company=company;flush()}
   ME.onboarded?startApp():onboarding();
 }
-async function startApp(){await loadClientsCloud();$('#auth').hidden=true;$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
+async function startApp(){await loadClientsCloud();$('#auth').hidden=true;document.getElementById('cookieBanner')?.remove();$('#app').hidden=false;paintShell();drawNav();go(location.hash.slice(1)||'home')}
 A.logout=async()=>{flush();const {error}=await sb.auth.signOut();if(error){toast('Не удалось выйти: '+authMessage(error));return}CUR=null;$('#mePop').hidden=true;showAuth('login')};
 /* Мастер настройки */
 let OB;
