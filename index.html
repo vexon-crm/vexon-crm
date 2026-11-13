@@ -1,6 +1,103 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>VEXON</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ===== ALFA + visual system ===== */
+:root{
+ --bg:#111510;--bg2:#171d17;--card:rgba(29,36,29,.76);--card2:rgba(39,47,38,.78);
+ --line:rgba(229,235,216,.13);--fg:#f1f0e8;--mut:#a4ad9d;--dim:#737e70;
+ --acc:#cbd4a5;--acc2:#9eafa1;--accsoft:rgba(203,212,165,.12);
+ --grad:linear-gradient(135deg,#d5ddb0 0%,#9eafa1 100%);
+ --ok:#8eb99a;--warn:#d6b47b;--bad:#d98e83;--info:#9eafa1;
+ --c1:#cbd4a5;--c2:#9eafa1;--c3:#8eb99a;--c4:#d6b47b;--c5:#d98e83;
+ --shadow:0 24px 70px rgba(0,0,0,.32);color-scheme:dark;
+}
+:root[data-theme="light"]{
+ --bg:#e9e9e1;--bg2:#e0e2d8;--card:rgba(250,250,244,.78);--card2:rgba(238,240,231,.88);
+ --line:rgba(40,49,38,.13);--fg:#20271f;--mut:#667063;--dim:#899184;
+ --acc:#667b5e;--acc2:#788c80;--accsoft:rgba(102,123,94,.11);
+ --grad:linear-gradient(135deg,#778b68,#a5b5a6);
+ --ok:#397b50;--warn:#9b753c;--bad:#ad5c52;--info:#647e73;
+ --c1:#667b5e;--c2:#788c80;--c3:#397b50;--c4:#9b753c;--c5:#ad5c52;
+ --shadow:0 22px 60px rgba(45,55,38,.13);color-scheme:light;
+}
+html,body{background:var(--bg)}
+body{
+ background:radial-gradient(ellipse at 14% 4%,rgba(166,181,139,.13),transparent 32%),
+ radial-gradient(ellipse at 88% 18%,rgba(122,147,133,.12),transparent 34%),
+ linear-gradient(145deg,#111510 0%,#171d17 52%,#121713 100%);
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.34;
+ background-image:radial-gradient(rgba(240,242,224,.14) .65px,transparent .65px);
+ background-size:5px 5px;mask-image:linear-gradient(to bottom,black,transparent 70%);
+}
+.app{position:relative;z-index:1;grid-template-columns:252px minmax(0,1fr)}
+.side{background:rgba(17,22,17,.78);border-right:1px solid var(--line);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);padding:24px 14px 18px}
+.brand{padding:2px 12px 24px;gap:12px}
+.logo{width:35px;height:35px;border-radius:11px;background:var(--grad);box-shadow:0 8px 24px rgba(181,194,150,.16)}
+.logo svg path{stroke:#1a2119}
+.wm{font:600 18px/1 'Space Grotesk',sans-serif;letter-spacing:.17em;color:var(--fg)}
+.wm i{font-style:normal;color:var(--acc);background:none;-webkit-text-fill-color:currentColor}
+.nav{gap:5px}
+.nav button{border-radius:9px;padding:11px 13px;color:#a7b0a1;font-size:13px;letter-spacing:.01em}
+.nav button:hover{background:rgba(229,235,216,.07);color:#fff}
+.nav button.on{background:rgba(203,212,165,.12);color:#f4f2e9;box-shadow:inset 2px 0 0 var(--acc)}
+.nav button.on svg{color:var(--acc)}
+.nav .badge{background:var(--acc);color:#20271d}
+.plan{background:rgba(238,242,224,.055);border-color:var(--line);border-radius:12px}
+.bar{background:rgba(238,242,224,.1)}.bar i{background:var(--grad)}
+.legal-side{padding-left:10px}
+.mainwrap{background:transparent}
+.top{background:rgba(17,22,17,.58);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--line);padding:13px 28px}
+.company{letter-spacing:.02em}.company small{color:var(--dim)}
+.search input{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:8px}
+.ibtn{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:9px}
+.me{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:999px}
+main{padding:30px 34px 42px}
+.view{max-width:1480px}
+.ph{margin-bottom:25px;align-items:center}
+.ph h1{font:500 clamp(25px,3vw,34px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-.045em}
+.ph p{color:var(--mut);font-size:13px;margin-top:7px}
+.eyebrow{font-size:9px;letter-spacing:.22em;color:var(--acc);font-weight:600;margin-bottom:10px}
+.dashboard-head{padding:18px 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.08);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.card h3{font-size:14px;font-weight:500;letter-spacing:.015em;color:var(--fg)}
+.kpi{border-radius:12px;padding:17px 18px;min-height:125px}
+.kpi .l{font-size:11px;letter-spacing:.025em;color:var(--mut)}
+.kpi .v{font:500 26px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.04em;margin:12px 0 4px}
+.kpi .ic{background:rgba(203,212,165,.1);color:var(--acc);border-radius:9px}
+.btn{border-radius:8px;background:rgba(255,255,255,.045);border-color:var(--line);font-size:12px;padding:9px 14px}
+.btn.pri{background:var(--acc);color:#20271d;border-color:var(--acc);box-shadow:none;font-weight:600}
+.btn.pri:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.btn:hover{border-color:rgba(203,212,165,.55)}
+.btn.dng{color:var(--bad)}
+.ibtn:hover{border-color:var(--acc);color:var(--acc)}
+.tools input,.tools select,.fld input,.fld select,.fld textarea{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:8px}
+.tw{border-color:var(--line);border-radius:11px;background:rgba(255,255,255,.025)}
+th{background:rgba(255,255,255,.045);font-size:10px;letter-spacing:.1em;color:var(--dim)}
+td{border-top-color:var(--line);font-size:12px}
+tbody tr:hover{background:rgba(203,212,165,.06)}
+.pill{border-radius:5px;font-size:10px;letter-spacing:.015em}
+.seg{background:rgba(255,255,255,.035);border-color:var(--line);border-radius:8px}
+.seg button{font-size:11px}.seg button.on{background:rgba(203,212,165,.17);color:var(--fg)}
+.row{border-top-color:var(--line)}
+.modal,.legal-dialog{background:#1b211b;border-color:var(--line);border-radius:14px}
+.mh{background:#1b211b;border-color:var(--line)}
+.ov{backdrop-filter:blur(8px)}
+.auth{background:linear-gradient(120deg,rgba(12,17,13,.65),rgba(12,17,13,.9)),radial-gradient(ellipse at 22% 10%,rgba(177,192,143,.22),transparent 36%),radial-gradient(ellipse at 90% 85%,rgba(128,154,137,.18),transparent 40%),#111510}
+.auth-box{background:rgba(28,35,28,.72);border:1px solid rgba(230,235,216,.17);border-radius:15px;backdrop-filter:blur(28px);box-shadow:0 28px 100px rgba(0,0,0,.4)}
+.auth-pitch{background:linear-gradient(145deg,rgba(188,199,159,.22),rgba(119,142,128,.12));border-right:1px solid var(--line)}
+.auth-pitch h2{font:500 34px/1.12 'Space Grotesk',sans-serif;letter-spacing:-.045em;max-width:440px}
+.auth-pitch p{color:rgba(244,243,232,.76);font-size:13px}
+.auth-pitch li{font-size:12px;color:rgba(244,243,232,.82)}
+.auth-form h2{font:500 25px 'Space Grotesk',sans-serif}
+.auth-form .fld input,.auth-form .fld select,.emprow input{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:8px}
+.toast{background:#242d24;border:1px solid rgba(203,212,165,.45);border-radius:8px}
+.pop,.sres{background:#202820;border-color:var(--line);border-radius:11px}
+@media(max-width:860px){.side{background:rgba(18,24,18,.96)}.top{padding:10px 13px}main{padding:19px 15px 30px}.dashboard-head{padding-top:8px}}
+@media(max-width:520px){.ph h1{font-size:25px}.kpi .v{font-size:23px}.auth-pitch h2{font-size:27px}}
+
+</style></head><body>
+<title>ALFA + — CRM</title>
+<meta name="claude:viewport-fit-sides" content="cover"><meta name="theme-color" content="#111510"><meta name="description" content="ALFA + — рабочее пространство для клиентов, сделок и команды.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
 <style>
 /* Макет: фиксированный сайдбар + верхняя панель + прокручиваемая рабочая область; на телефоне сайдбар становится выдвижным */
@@ -297,7 +394,7 @@ tr.click{cursor:pointer}
 </defs></svg>
 <div class="app" id="app" hidden>
  <aside class="side" id="side" aria-label="Главное меню">
-  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">VE<i>X</i>ON</span></div>
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">ALFA <i>+</i></span></div>
   <nav class="nav" id="nav"></nav>
   <div class="plan"><b>Тариф «Старт»</b>Сотрудников: <span id="planU">1</span> из 15<div class="bar"><i style="width:53%"></i></div>Пробный период 14 дней</div>
   <div class="legal-side"><button type="button" data-legal="privacy">Конфиденциальность</button><button type="button" data-legal="terms">Условия</button><button type="button" data-legal="cookies">Cookie</button><button type="button" id="cookieSettings">Cookie-настройки</button></div>
@@ -317,7 +414,7 @@ tr.click{cursor:pointer}
  </div>
 </div>
 <div id="auth" hidden></div>
-<input type="file" id="rfile" accept=".json,application/json" hidden>
+<input type="file" id="rfile" accept=".json,application/json" hidden><input type="file" id="cfile" accept=".csv,text/csv" hidden>
 <div id="layer"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -415,7 +512,7 @@ let theme='dark';
 try{const t=localStorage.getItem('vexon-theme');if(t)theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)theme='light'}catch(e){}
 function setTheme(t){theme=t;document.documentElement.dataset.theme=t;$('#themeIc').setAttribute('href',t==='dark'?'#i-sun':'#i-moon');try{localStorage.setItem('vexon-theme',t)}catch(e){}}
 /* Навигация и маршрутизация */
-const NAV=[['home','Главная','home'],['clients','Клиенты','users'],['deals','Сделки','deal'],['tasks','Задачи','tasks'],['analytics','Аналитика','chart'],['messages','Сообщения','msg'],['phone','Телефония','phone'],['products','Товары и склад','box'],['finance','Финансы','wallet'],['automation','Автоматизация','zap'],['staff','Сотрудники','team'],['settings','Настройки','set']];
+const NAV=[['home','Главная','home'],['clients','Клиенты','users'],['deals','Сделки','deal'],['tasks','Задачи','tasks'],['analytics','Аналитика','chart'],['messages','Сообщения','msg'],['products','Товары и склад','box'],['finance','Финансы','wallet'],['automation','Автоматизация','zap'],['staff','Сотрудники','team'],['settings','Настройки','set']];
 const V={};let cur='home';
 function go(name){if(!V[name])name='home';cur=name;if(location.hash!=='#'+name)history.replaceState(null,'','#'+name);
   $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===name));
@@ -494,7 +591,7 @@ V.home=()=>{
   const won=deals.filter(d=>d.stage==='won').length,lost=deals.filter(d=>d.stage==='lost').length,conv=Math.round(won/(won+lost||1)*100);
   const kp=(l,v,d,ic,sp,c)=>`<div class="card kpi"><div class="ic">${ico(ic)}</div><div class="l">${l}</div><div class="v">${v}</div>${demo?`<div class="d ${d[0]=='-'?'down':'up'}">${d[0]=='-'?'▼':'▲'} ${d.replace('-','')} <span class="mut">к прошлому месяцу</span></div>${spark(sp,c)}`:''}</div>`;
   const nextT=tasks.filter(t=>t.status!=='Выполнена').sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);
-  $('#view').innerHTML=`<div class="ph"><div><h1>${(h=>h<5?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер')(new Date().getHours())}, ${esc((ME.name||'').split(' ')[0])}</h1><p>Сводка по компании на ${new Date(TODAY).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</p></div><div class="acts"><button class="btn" data-act="newTask">${ico('plus')}Задача</button><button class="btn pri" data-act="newDeal">${ico('plus')}Новая сделка</button></div></div>
+  $('#view').innerHTML=`<div class="ph dashboard-head"><div><div class="eyebrow">ALFA + / РАБОЧЕЕ ПРОСТРАНСТВО</div><h1>${(h=>h<5?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер')(new Date().getHours())}, ${esc((ME.name||'').split(' ')[0])}</h1><p>Сводка по компании на ${new Date(TODAY).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</p></div><div class="acts"><button class="btn" data-act="newTask">${ico('plus')}Задача</button><button class="btn pri" data-act="newDeal">${ico('plus')}Новая сделка</button></div></div>
   ${!demo&&(!clients.length||!deals.length||!tasks.length)?firstSteps():''}<div class="grid g5">
    ${kp('Выручка с начала года',mln(total),'12,4%','wallet',revenue.slice(0,MO),'--c1')}
    ${kp('Новых клиентов за 30 дней',newC,'8,1%','users',[3,5,4,6,5,7,newC],'--c2')}
@@ -507,7 +604,7 @@ V.home=()=>{
    <div class="card"><h3>Ближайшие задачи<button class="btn sm" data-go="tasks">Все</button></h3><div class="list">${nextT.length?'':'<div class="empty">Открытых задач нет</div>'}${nextT.map(t=>`<div class="row"><button class="chk" data-act="tdone" data-id="${t.id}" aria-label="Выполнить"></button><div class="grow"><b>${esc(t.title)}</b><small>${t.due===iso(0)?'Сегодня':fd(t.due)} · ${esc(mgrOf(t.mgr).name)}</small></div>${ppill(t.prio)}</div>`).join('')}</div></div>
   </div>
   <div class="grid g2" style="margin-top:16px">
-   <div class="card"><h3>Последние сделки<button class="btn sm" data-go="deals">Воронка</button></h3><div class="tw"><table><tbody>${deals.length?'':'<tr><td><div class="empty">Сделок пока нет</div></td></tr>'}${[...deals].sort((a,b)=>b.created.localeCompare(a.created)).slice(0,6).map(d=>{const s=STAGES.find(x=>x.id===d.stage);return `<tr class="click" data-act="deal" data-id="${d.id}"><td style="white-space:normal;min-width:160px">${esc(d.title)}<br><small class="mut">${esc(cliOf(d.cid).company)}</small></td><td>${rub(d.sum)}</td><td><span class="pill" style="color:${s.c};background:color-mix(in srgb,${s.c} 16%,transparent)">${s.name}</span></td></tr>`}).join('')}</tbody></table></div></div>
+   <div class="card"><h3>Последние сделки<button class="btn sm" data-go="deals">Воронка</button></h3><div class="tw"><table><tbody>${deals.length?'':'<tr><td><div class="empty">Сделок пока нет</div></td></tr>'}${[...deals].sort((a,b)=>b.created.localeCompare(a.created)).slice(0,6).map(d=>{const s=STAGES.find(x=>x.id===d.stage);return `<tr class="click" data-act="deal" data-id="${d.id}"><td style="white-space:normal;min-width:160px">${esc(d.title)}<br><small class="mut">${esc(cliOf(d.cid)?.company||'')}</small></td><td>${rub(d.sum)}</td><td><span class="pill" style="color:${s.c};background:color-mix(in srgb,${s.c} 16%,transparent)">${s.name}</span></td></tr>`}).join('')}</tbody></table></div></div>
    <div class="card"><h3>Действия сотрудников</h3><div class="list">${activity.length?'':'<div class="empty">Здесь появятся действия команды</div>'}${activity.map(a=>`<div class="row">${av(a.mgr)}<div class="grow" style="white-space:normal"><b style="white-space:normal;font-weight:400"><b style="display:inline">${esc(mgrOf(a.mgr).name.split(' ')[0])}</b> ${a.t}</b><small>${a.ago}</small></div></div>`).join('')}</div></div>
   </div>`;
 };
@@ -517,7 +614,7 @@ A.deal=b=>openDeal(+b.dataset.id);
 /* ===== Клиенты ===== */
 const CF={q:'',status:'',source:'',mgr:''};
 V.clients=()=>{
-  $('#view').innerHTML=`<div class="ph"><div><h1>Клиенты</h1><p id="ccount"></p></div><div class="acts"><button class="btn pri" data-act="newClient">${ico('plus')}Добавить клиента</button></div></div>
+  $('#view').innerHTML=`<div class="ph"><div><h1>Клиенты</h1><p id="ccount"></p></div><div class="acts"><button class="btn" data-act="importClients">${ico('in')}Импорт CSV</button><button class="btn" data-act="exportClients">${ico('down')}Экспорт CSV</button><button class="btn pri" data-act="newClient">${ico('plus')}Добавить клиента</button></div></div>
   <div class="tools"><input class="grow" id="cq" placeholder="Поиск по имени, телефону, почте, компании" value="${esc(CF.q)}" aria-label="Поиск клиентов">
    <select id="cs" aria-label="Статус"><option value="">Все статусы</option>${CSTAT.map(s=>`<option ${CF.status===s?'selected':''}>${s}</option>`).join('')}</select>
    <select id="cso" aria-label="Источник"><option value="">Все источники</option>${SOURCES.map(s=>`<option ${CF.source===s?'selected':''}>${s}</option>`).join('')}</select>
@@ -526,6 +623,70 @@ V.clients=()=>{
   $('#cq').oninput=e=>{CF.q=e.target.value;drawClients()};$('#cs').onchange=e=>{CF.status=e.target.value;drawClients()};$('#cso').onchange=e=>{CF.source=e.target.value;drawClients()};$('#cm').onchange=e=>{CF.mgr=e.target.value;drawClients()};
   drawClients();
 };
+
+
+A.importClients=()=>$('#cfile').click();
+function parseCSV(text){
+  const first=(text.split(/\r?\n/,1)[0]||'');
+  const delimiter=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?';':',';
+  const rows=[];let row=[],cell='',quoted=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i],next=text[i+1];
+    if(ch==='"'&&quoted&&next==='"'){cell+='"';i++}
+    else if(ch==='"'){quoted=!quoted}
+    else if(ch===delimiter&&!quoted){row.push(cell);cell=''}
+    else if((ch==='\n'||ch==='\r')&&!quoted){
+      if(ch==='\r'&&next==='\n')i++;
+      row.push(cell);if(row.some(v=>v.trim()))rows.push(row);row=[];cell='';
+    }else cell+=ch;
+  }
+  row.push(cell);if(row.some(v=>v.trim()))rows.push(row);
+  return rows;
+}
+function importClientsFile(file){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const rows=parseCSV(String(reader.result||'').replace(/^\uFEFF/,''));
+      if(rows.length<2)throw new Error('В файле нет строк с клиентами');
+      const headers=rows[0].map(x=>x.trim().toLowerCase());
+      const idx=(...names)=>headers.findIndex(h=>names.includes(h));
+      const map={name:idx('имя','фио','name'),phone:idx('телефон','phone'),email:idx('почта','email','e-mail'),company:idx('компания','company'),source:idx('источник','source'),manager:idx('ответственный','менеджер','manager'),status:idx('статус','status')};
+      if(map.name<0)throw new Error('Не найдена колонка «Имя»');
+      let added=0,duplicates=0;
+      rows.slice(1,1001).forEach(r=>{
+        const get=k=>map[k]>=0?String(r[map[k]]||'').trim():'';
+        const name=get('name'),phone=get('phone'),email=get('email');
+        if(!name)return;
+        const duplicate=clients.some(c=>(phone&&c.phone===phone)||(email&&c.email.toLowerCase()===email.toLowerCase()));
+        if(duplicate){duplicates++;return}
+        const manager=staff.find(m=>m.name.toLowerCase()===get('manager').toLowerCase());
+        clients.push({id:++nid,name,phone,email,company:get('company')||'Частное лицо',
+          source:SOURCES.includes(get('source'))?get('source'):SOURCES[0],
+          mgr:manager?manager.id:(staff[0]?.id||1),
+          status:CSTAT.includes(get('status'))?get('status'):'Новый',added:iso(0)});
+        added++;
+      });
+      scheduleClientSync();log(`импортировал(а) ${added} клиентов из CSV`);
+      toast(`Добавлено: ${added} · пропущено дублей: ${duplicates}`);
+      if(cur==='clients')drawClients();else V[cur]();
+    }catch(err){toast(err.message||'Не удалось прочитать CSV-файл')}
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+A.exportClients=()=>{
+  const q=CF.q.toLowerCase();
+  const rows=clients.filter(c=>(!q||(c.name+c.phone+c.email+c.company).toLowerCase().includes(q))&&(!CF.status||c.status===CF.status)&&(!CF.source||c.source===CF.source)&&(!CF.mgr||c.mgr==CF.mgr));
+  const cols=['Имя','Телефон','Почта','Компания','Источник','Ответственный','Статус','Дата добавления'];
+  const csv=[cols,...rows.map(c=>[c.name,c.phone,c.email,c.company,c.source,mgrOf(c.mgr).name,c.status,c.added||''])]
+    .map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='alfa-plus-clients.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  toast(`Экспортировано клиентов: ${rows.length}`);
+};
+
 function drawClients(){
   const q=CF.q.toLowerCase();
   const l=clients.filter(c=>(!q||(c.name+c.phone+c.email+c.company).toLowerCase().includes(q))&&(!CF.status||c.status===CF.status)&&(!CF.source||c.source===CF.source)&&(!CF.mgr||c.mgr==CF.mgr));
@@ -542,6 +703,8 @@ function clientForm(id){
   modal({title:id?'Редактирование клиента':'Новый клиент',body:`<form class="form" id="cf">${fld('f_name','Имя и фамилия',c.name,{full:1,ph:'Иван Петров'})}${fld('f_phone','Телефон',c.phone,{ph:'+7 ___ ___-__-__'})}${fld('f_email','Электронная почта',c.email,{type:'email'})}${fld('f_company','Компания',c.company)}${fld('f_source','Источник обращения',c.source,{type:'select',opts:SOURCES})}${fld('f_mgr','Ответственный менеджер',c.mgr,{type:'select',opts:mgrOpts()})}${fld('f_status','Статус',c.status,{type:'select',opts:CSTAT})}</form>`,
    foot:[{label:'Отмена',fn:closeModal},{label:id?'Сохранить':'Добавить',cls:'pri',fn:()=>{
      if(!val('f_name')){toast('Укажите имя клиента');return}
+     const dup=clients.find(x=>x.id!==id&&((val('f_phone')&&x.phone===val('f_phone'))||(val('f_email')&&String(x.email||'').toLowerCase()===val('f_email').toLowerCase())));
+     if(dup){toast('Клиент с таким телефоном или почтой уже существует');return}
      const o={name:val('f_name'),phone:val('f_phone'),email:val('f_email'),company:val('f_company')||'Частное лицо',source:val('f_source'),mgr:+val('f_mgr'),status:val('f_status')};
      if(id)Object.assign(c,o);else{o.id=++nid;o.added=iso(0);clients.unshift(o);log(`добавил(а) клиента «${o.name}»`);fire('Создан клиент',{cid:o.id,mgr:o.mgr,what:o.name})}
      scheduleClientSync();closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
@@ -791,7 +954,7 @@ V.settings=()=>{
   const P={
    company:`<div class="form">${fld('c_n','Название компании',ME.company,{full:1})}${fld('c_ind','Сфера деятельности',ME.industry||INDS[0],{type:'select',opts:INDS})}${fld('c_i','ИНН',ME.inn)}${fld('c_c','Город',ME.city)}${fld('c_ph','Телефон компании',ME.cphone)}${fld('c_m','Почта компании',ME.cemail)}${fld('c_s','Сайт',ME.site)}${fld('c_a','Адрес',ME.addr,{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button></div><h4 style="margin:24px 0 8px">Источники клиентов и категории</h4><div class="form">${fld('c_src','Источники (через запятую)',SOURCES.join(', '),{full:1})}${fld('c_cat','Категории товаров (через запятую)',CATS.join(', '),{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveLists">Сохранить списки</button></div>`,
    profile:`<div class="form">${fld('u_l','Электронная почта',ME.login,{dis:1})}${fld('u_n','Имя и фамилия',ME.name)}${fld('u_r','Должность',ME.position)}${fld('u_e','Почта',ME.email,{type:'email'})}${fld('u_p','Телефон',ME.phone)}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button> <button class="btn" data-act="chPw">Сменить пароль</button></div>`,
-   integr:`<div>${['tg','wa','mail'].map(k=>{const c=ME.ch[k];return `<div class="chrow"><span class="chb" style="background:${CH[k].c};width:30px;height:30px;font-size:14px">${CH[k].l}</span><div style="min-width:0"><b>${CHINFO[k].n}</b> <span class="pill ${c.on?'ok':'gray'}">${c.on?'Подключено':'Не подключено'}</span><div class="mut" style="font-size:12px;margin-top:2px">${c.on?esc(c.v):CHINFO[k].hint}</div>${c.on?'':`<input id="ch_${k}" placeholder="${CHINFO[k].ph}" style="margin-top:8px" aria-label="${CHINFO[k].lb}">`}</div>${c.on?`<button class="btn sm dng" data-act="chOff" data-k="${k}">Отключить</button>`:`<button class="btn sm pri" data-act="chOn" data-k="${k}">Подключить</button>`}</div>`}).join('')}</div><p class="mut">Подключённый канал появляется в разделе «Сообщения»: переписка ведётся в VEXON и сохраняется в карточке клиента. Токены и пароли не сохраняются. Автоматическая отправка и приём сообщений в Telegram и WhatsApp включатся вместе с серверной частью.</p>`,
+   integr:`<div>${['tg','wa','mail'].map(k=>{const c=ME.ch[k];return `<div class="chrow"><span class="chb" style="background:${CH[k].c};width:30px;height:30px;font-size:14px">${CH[k].l}</span><div style="min-width:0"><b>${CHINFO[k].n}</b> <span class="pill ${c.on?'ok':'gray'}">${c.on?'Подключено':'Не подключено'}</span><div class="mut" style="font-size:12px;margin-top:2px">${c.on?esc(c.v):CHINFO[k].hint}</div>${c.on?'':`<input id="ch_${k}" placeholder="${CHINFO[k].ph}" style="margin-top:8px" aria-label="${CHINFO[k].lb}">`}</div>${c.on?`<button class="btn sm dng" data-act="chOff" data-k="${k}">Отключить</button>`:`<button class="btn sm pri" data-act="chOn" data-k="${k}">Подключить</button>`}</div>`}).join('')}</div><p class="mut">Подключённый канал появляется в разделе «Сообщения»: переписка ведётся в ALFA + и сохраняется в карточке клиента. Токены и пароли не сохраняются. Автоматическая отправка и приём сообщений в Telegram и WhatsApp включатся вместе с серверной частью.</p>`,
    notif:`<div class="list">${sw('n','newDeal','Новые сделки','Сообщать о каждой новой заявке')}${sw('n','task','Задачи','Напоминать о сроках и просрочке')}${sw('n','miss','Пропущенные звонки','Мгновенное уведомление менеджеру')}${sw('n','mail','Ежедневный отчёт на почту','Сводка в 9:00')}</div>`,
    look:`<div class="row"><div class="grow"><b>Тема интерфейса</b><small>Сейчас: ${theme==='dark'?'тёмная':'светлая'}</small></div><div class="seg"><button data-act="th" data-t="dark" class="${theme==='dark'?'on':''}">Тёмная</button><button data-act="th" data-t="light" class="${theme==='light'?'on':''}">Светлая</button></div></div>`,
    data:`<div class="list"><div class="row"><div class="grow"><b>Аккаунт: ${esc(ME.login)}</b><small>Вход защищён Supabase Auth</small></div><button class="btn" data-act="logout">Выйти</button></div><div class="row"><div class="grow"><b>Резервная копия</b><small>Скачайте файл со всеми данными аккаунта</small></div><button class="btn" data-act="backup">${ico('down')}Скачать</button></div><div class="row"><div class="grow"><b>Восстановить из копии</b><small>Заменит текущие данные содержимым файла</small></div><button class="btn" data-act="restoreFile">Выбрать файл</button></div><div class="row"><div class="grow"><b>Очистить все данные</b><small>Удалит клиентов, сделки, задачи, товары и остальное. Аккаунт останется.</small></div><button class="btn dng" data-act="askClear">Очистить</button></div></div><p class="mut"><b>Где хранятся данные.</b> Аккаунт и пароль хранятся в Supabase Auth. Данные CRM пока сохраняются локально в этом браузере и на этом устройстве. Для синхронизации клиентов, сделок, задач и остальных разделов между устройствами потребуется отдельно подключить таблицы базы данных.</p>`
@@ -839,8 +1002,8 @@ async function saveWorkspaceCloud(silent=false){
   );
   cloudSaveBusy=false;
   if(error){
-    console.error('VEXON cloud workspace save:',error);
-    if(!silent)toast('Не удалось сохранить CRM в Supabase: '+(error.message||'ошибка'));
+    console.error('ALFA + cloud workspace save:',error);
+    if(!silent)toast('Не удалось сохранить ALFA +:  '+(error.message||'ошибка'));
     return false;
   }
   cloudWorkspaceData=payload;
@@ -859,8 +1022,8 @@ async function loadClientsCloud(){
   cloudReady=false;
   const {data,error}=await sb.from('crm_workspaces').select('data').eq('user_id',CUR).maybeSingle();
   if(error){
-    console.error('VEXON cloud workspace load:',error);
-    toast('Не удалось загрузить облачные данные. Проверьте соединение и права Supabase.');
+    console.error('ALFA + cloud workspace load:',error);
+    toast('Не удалось загрузить данные. Проверьте соединение и настройки доступа.');
     cloudReady=true;
     return;
   }
@@ -889,7 +1052,7 @@ async function loadClientsCloud(){
 const INDS=['Торговля','Услуги','Производство','IT и разработка','Строительство','Образование','Медицина','Другое'];
 const SIZES=['Только я','2–5','6–15','16–50','Больше 50'];
 const SRC_ALL=['Сайт','Реклама','Рекомендация','Выставка','Холодный звонок','Соцсети','Яндекс Директ','Авито','Telegram-канал','Партнёры','Email-рассылка'];
-const pitch=()=>`<div class="auth-pitch"><div class="brand" style="padding:0;color:#fff"><div class="logo" style="background:rgba(255,255,255,.2);box-shadow:none"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">VE<i>X</i>ON</span></div><h2>Все клиенты, сделки и задачи в одном месте</h2><p>CRM, которую вы настраиваете под свой бизнес за несколько минут.</p><ul><li>Воронка продаж и учёт клиентов</li><li>Задачи, звонки и переписка</li><li>Склад, финансы и аналитика, которая считается сама</li><li>Автоматизация рутины</li></ul></div>`;
+const pitch=()=>`<div class="auth-pitch"><div class="brand" style="padding:0;color:#fff"><div class="logo" style="background:rgba(255,255,255,.2);box-shadow:none"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">ALFA <i>+</i></span></div><h2>Все клиенты, сделки и задачи в одном месте</h2><p>CRM, которую вы настраиваете под свой бизнес за несколько минут.</p><ul><li>Воронка продаж и учёт клиентов</li><li>Задачи, звонки и переписка</li><li>Склад, финансы и аналитика, которая считается сама</li><li>Автоматизация рутины</li></ul></div>`;
 
 /* Подключение каналов связи */
 const CHINFO={tg:{n:'Telegram',lb:'Токен бота от @BotFather',ph:'123456789:AAH…',hint:'Создайте бота у @BotFather и вставьте токен'},wa:{n:'WhatsApp',lb:'Номер WhatsApp Business',ph:'+7 900 000-00-00',hint:'Номер, на который клиенты будут писать'},mail:{n:'Почта',lb:'Рабочая почта для переписки',ph:'sales@company.ru',hint:'Адрес, с которого вы общаетесь с клиентами'}};
@@ -900,12 +1063,12 @@ function connectCh(k,v){v=(v||'').trim();
   log(`подключил(а) канал «${CHINFO[k].n}»`);return ''}
 const chOn=k=>!!ME.ch?.[k]?.on;
 const chList=()=>['tg','wa','mail'].filter(chOn);
-/* Правовые документы VEXON. Перед публикацией заполните сведения об операторе и инфраструктуре. */
+/* Правовые документы ALFA +. Перед публикацией заполните сведения об операторе и инфраструктуре. */
 const LEGAL_VERSION='2026-11-12';
 const LEGAL_DOCS={
  privacy:{title:'Политика конфиденциальности и обработки персональных данных',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года.</p><p><b>Оператор:</b> [указать полное ФИО физического лица или наименование ИП/организации, адрес и контактный e-mail]. До заполнения этих сведений документ не готов к публикации.</p>
- <h3>1. Общие положения</h3><p>Настоящая Политика описывает обработку персональных данных при использовании сервиса VEXON CRM (далее — Сервис). Оператор обрабатывает данные в соответствии с применимым законодательством РФ, включая Федеральный закон № 152-ФЗ «О персональных данных».</p><p>Политика относится к данным посетителей и зарегистрированных пользователей. Если пользователь вносит в CRM данные своих клиентов, сотрудников или иных лиц, пользователь самостоятельно определяет законное основание такой обработки и обязан информировать этих лиц. Оператор VEXON обрабатывает такие сведения в рамках предоставления Сервиса и на условиях отдельного поручения/договора обработки, который должен быть оформлен до промышленного запуска.</p>
+ <h3>1. Общие положения</h3><p>Настоящая Политика описывает обработку персональных данных при использовании сервиса ALFA + CRM (далее — Сервис). Оператор обрабатывает данные в соответствии с применимым законодательством РФ, включая Федеральный закон № 152-ФЗ «О персональных данных».</p><p>Политика относится к данным посетителей и зарегистрированных пользователей. Если пользователь вносит в CRM данные своих клиентов, сотрудников или иных лиц, пользователь самостоятельно определяет законное основание такой обработки и обязан информировать этих лиц. Оператор ALFA + обрабатывает такие сведения в рамках предоставления Сервиса и на условиях отдельного поручения/договора обработки, который должен быть оформлен до промышленного запуска.</p>
  <h3>2. Какие данные обрабатываются</h3><ul><li>Для регистрации и входа: имя, фамилия, номер телефона, адрес электронной почты, идентификатор аккаунта и технические данные аутентификации. Пароль передаётся сервису аутентификации и не должен сохраняться Оператором в открытом виде.</li><li>Для работы CRM: данные, которые пользователь самостоятельно вносит в рабочее пространство, включая сведения о клиентах, сделках, задачах, сотрудниках, товарах и коммуникациях. Пользователь должен вносить только данные, необходимые для его деловой цели.</li><li>Технические сведения: сведения о сессии, настройках интерфейса, событиях безопасности и журналов, если они формируются используемыми компонентами. Браузер также обращается к внешним ресурсам, используемым в коде (Google Fonts и CDN jsDelivr для библиотеки Supabase); их поставщики могут получать технические данные запроса, например IP-адрес и сведения о браузере.</li></ul><p>Не запрашиваются намеренно специальные категории персональных данных (например, сведения о здоровье, политических взглядах или интимной жизни), биометрические данные, паспортные данные и платёжные реквизиты. Не размещайте такие сведения в CRM, если для этого нет отдельного законного основания и согласованного процесса.</p>
  <h3>3. Цели и основания обработки</h3><ul><li>создание аккаунта, аутентификация и обеспечение доступа к Сервису;</li><li>предоставление функций CRM, сохранение рабочего пространства и синхронизация данных;</li><li>обеспечение безопасности, предотвращение злоупотреблений, диагностика ошибок и поддержка;</li><li>исполнение договора с пользователем и соблюдение обязательных требований закона.</li></ul><p>Основания: заключение и исполнение договора, обязанности по закону, а для тех операций, где это требуется, отдельное согласие субъекта персональных данных.</p>
  <h3>4. Действия с данными и минимизация</h3><p>Оператор может осуществлять сбор, запись, систематизацию, накопление, хранение, уточнение, использование, передачу уполномоченным обработчикам, блокирование и удаление данных. Состав данных ограничивается целями Сервиса. Пользователю не следует вносить избыточные сведения.</p>
@@ -914,9 +1077,9 @@ const LEGAL_DOCS={
  <h3>7. Права субъекта</h3><p>Субъект вправе запросить сведения об обработке, потребовать уточнения, блокирования или удаления данных, а также отозвать согласие, если обработка основана на согласии. Запрос направляется на [указать рабочий e-mail Оператора]. Отзыв согласия не влияет на законность обработки до его получения и не исключает обработку на иных законных основаниях.</p>
  <h3>8. Защита данных</h3><p>Оператор обязан принимать необходимые правовые, организационные и технические меры защиты. Фактические меры, ответственные лица, порядок реагирования на инциденты и уровень защищённости должны быть определены и документированы отдельно. Наличие этой Политики само по себе не подтверждает выполнение таких мер.</p>
  <h3>9. Контакты и изменения</h3><p>Контакт Оператора: [указать e-mail и почтовый адрес]. Политика может обновляться; актуальная редакция публикуется на странице Сервиса с датой изменения.</p>`},
- terms:{title:'Условия использования VEXON CRM',html:`
+ terms:{title:'Условия использования ALFA + CRM',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года. <b>Правообладатель/исполнитель:</b> [указать полное ФИО или наименование, адрес и контакты].</p>
- <h3>1. Предмет</h3><p>VEXON CRM — программный сервис для организации работы с клиентами, сделками, задачами и иными бизнес-данными. Условия регулируют доступ к Сервису и его использование.</p>
+ <h3>1. Предмет</h3><p>ALFA + CRM — программный сервис для организации работы с клиентами, сделками, задачами и иными бизнес-данными. Условия регулируют доступ к Сервису и его использование.</p>
  <h3>2. Аккаунт</h3><p>Пользователь обязан предоставлять достоверные регистрационные данные, обеспечивать конфиденциальность учётных данных и незамедлительно сообщать о подозрении на несанкционированный доступ. Пользователь отвечает за действия, совершённые через его аккаунт, если иное не установлено законом.</p>
  <h3>3. Допустимое использование</h3><p>Запрещается использовать Сервис для нарушения закона, прав третьих лиц, рассылки спама, загрузки вредоносного кода, попыток обхода защиты или несанкционированного доступа. Пользователь обязуется иметь законное основание для внесения и обработки персональных данных третьих лиц.</p>
  <h3>4. Данные пользователя</h3><p>Пользователь сохраняет права на загружаемые им данные и отвечает за их законность, точность, наличие необходимых уведомлений и согласий. Пользователь должен вносить только данные, необходимые для конкретной деловой цели, и не загружать специальные категории или биометрические данные без отдельной правовой оценки.</p>
@@ -928,7 +1091,7 @@ const LEGAL_DOCS={
  <h3>10. Заключительные положения</h3><p>До публикации Оператор должен заполнить сведения о себе, определить тарифы и порядок оплаты (если применимо), а также проверить согласованность Условий с фактической работой Сервиса.</p>`},
  cookies:{title:'Политика использования Cookie и локального хранилища',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года. Оператор: [указать сведения Оператора и контакт].</p>
- <h3>1. Что используется сейчас</h3><p>По текущему коду VEXON не подключены рекламные cookie-файлы и сторонние системы веб-аналитики. Для работы интерфейса и входа используются необходимые технологии браузера: localStorage/session storage и механизмы хранения сессии библиотеки Supabase. В localStorage могут храниться выбранная тема интерфейса и локальная копия рабочего пространства (в том числе данные, которые пользователь внёс в CRM); библиотека авторизации может сохранять токен сессии. Это не обязательно cookie-файлы, но относится к технологиям хранения данных на устройстве.</p>
+ <h3>1. Что используется сейчас</h3><p>По текущему коду ALFA + не подключены рекламные cookie-файлы и сторонние системы веб-аналитики. Для работы интерфейса и входа используются необходимые технологии браузера: localStorage/session storage и механизмы хранения сессии библиотеки Supabase. В localStorage могут храниться выбранная тема интерфейса и локальная копия рабочего пространства (в том числе данные, которые пользователь внёс в CRM); библиотека авторизации может сохранять токен сессии. Это не обязательно cookie-файлы, но относится к технологиям хранения данных на устройстве.</p>
  <h3>2. Цели</h3><p>Эти технологии необходимы для входа в аккаунт, сохранения настроек, поддержания сессии и работы CRM. При отключении необходимого хранения некоторые функции Сервиса могут не работать.</p>
  <h3>3. Необязательные технологии</h3><p>На дату редакции необязательные аналитические и рекламные cookie не заявлены и не должны устанавливаться без отдельного информирования и получения требуемого согласия. Внешние Google Fonts и CDN jsDelivr загружаются как сторонние ресурсы; передача технических данных при их загрузке должна быть отдельно оценена Оператором, в том числе с учётом требований локализации и трансграничной передачи. Если в будущем будут добавлены аналитика, реклама, пиксели или иные необязательные технологии, Политика и интерфейс выбора должны быть обновлены до их включения.</p>
  <h3>4. Управление</h3><p>Пользователь может ограничить хранение в настройках браузера. Удаление локального хранилища может привести к выходу из аккаунта, сбросу темы или потере несинхронизированных локальных изменений. Согласие на необязательные cookie не запрашивается, пока такие технологии не используются.</p>
@@ -936,7 +1099,7 @@ const LEGAL_DOCS={
  pd:{title:'Согласие на обработку персональных данных',html:`
  <p><b>Оператор:</b> [указать полное ФИО/наименование, адрес и контактный e-mail]. <b>Версия:</b> 12.11.2026.</p>
  <p>Я, субъект персональных данных, свободно, своей волей и в своём интересе даю Оператору согласие на обработку следующих данных: имя, фамилия, номер телефона, адрес электронной почты, идентификатор аккаунта и технические сведения, необходимые для аутентификации и безопасности. Пароль обрабатывается сервисом аутентификации в защищённом виде; Оператор не должен получать или хранить его в открытом виде.</p>
- <p><b>Цели:</b> регистрация и идентификация пользователя, создание и защита аккаунта, предоставление доступа к функциям VEXON CRM, сохранение рабочего пространства, синхронизация данных, техническая поддержка и обеспечение безопасности.</p>
+ <p><b>Цели:</b> регистрация и идентификация пользователя, создание и защита аккаунта, предоставление доступа к функциям ALFA + CRM, сохранение рабочего пространства, синхронизация данных, техническая поддержка и обеспечение безопасности.</p>
  <p><b>Операции:</b> сбор, запись, систематизация, накопление, хранение, уточнение, использование, передача уполномоченным обработчикам в объёме, необходимом для работы Сервиса, блокирование и удаление.</p>
  <p><b>Срок:</b> до достижения целей обработки или прекращения использования аккаунта, если более длительное хранение не требуется законом; конкретные сроки удаления и резервного копирования должны быть установлены Оператором.</p>
  <p>Согласие может быть отозвано обращением на [указать e-mail Оператора]. Отзыв может повлечь невозможность дальнейшего предоставления функций, для которых данные необходимы. Оператор вправе продолжить обработку при наличии иного законного основания.</p>
@@ -948,7 +1111,7 @@ function showCookieNotice(){
  const auth=document.getElementById('auth');if(cookieSeen||!auth||auth.hidden){document.getElementById('cookieBanner')?.remove();return}
  if(document.getElementById('cookieBanner'))return;
  const b=document.createElement('section');b.className='cookie-banner';b.id='cookieBanner';b.setAttribute('role','region');b.setAttribute('aria-label','Уведомление об использовании cookie');
- b.innerHTML='<div><b>Мы используем cookie-файлы</b><p>VEXON использует необходимые cookie и похожие технологии хранения, чтобы обеспечивать вход в аккаунт, сохранять настройки и поддерживать работу CRM. Рекламные и необязательные аналитические cookie сейчас не используются. Нажимая «Принять», вы подтверждаете, что ознакомились с уведомлением. <button type="button" class="link" data-legal="cookies">Политика Cookie</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Принять</button></div>';
+ b.innerHTML='<div><b>Мы используем cookie-файлы</b><p>ALFA + использует необходимые cookie и похожие технологии хранения, чтобы обеспечивать вход в аккаунт, сохранять настройки и поддерживать работу CRM. Рекламные и необязательные аналитические cookie сейчас не используются. Нажимая «Принять», вы подтверждаете, что ознакомились с уведомлением. <button type="button" class="link" data-legal="cookies">Политика Cookie</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Принять</button></div>';
  document.body.appendChild(b);document.getElementById('cookieAccept').onclick=()=>{try{localStorage.setItem(key,JSON.stringify({acknowledged:true,at:new Date().toISOString(),version:LEGAL_VERSION}))}catch(e){}b.remove()};
 }
 function initLegalUi(){
@@ -965,7 +1128,7 @@ function authMessage(e){
 }
 function showAuth(mode='login',notice=''){
   $('#app').hidden=true;const a=$('#auth');a.hidden=false;a.className='auth';const reg=mode==='reg';
-  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в VEXON'}</h2><p class="mut" style="margin:0">${reg?'Для регистрации нужны только имя, фамилия, телефон, почта и пароль.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_first','Имя','',{ph:'Иван'})+fld('r_last','Фамилия','',{ph:'Иванов'})+fld('r_phone','Телефон','',{type:'tel',ph:'+7 900 000-00-00'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'})+`<label class="legal-check"><input id="r_terms" type="checkbox" required><span>Принимаю <a href="#" data-legal="terms">Условия использования</a> и подтверждаю ознакомление с <a href="#" data-legal="privacy">Политикой конфиденциальности</a>.</span></label><label class="legal-check"><input id="r_pd" type="checkbox" required><span>Даю отдельное согласие на обработку моих персональных данных в целях регистрации и предоставления доступа к CRM согласно <a href="#" data-legal="pd">Согласию на обработку персональных данных</a>.</span></label>`:''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div><div class="legal-links"><button type="button" data-legal="privacy">Политика конфиденциальности</button><button type="button" data-legal="terms">Условия использования</button><button type="button" data-legal="cookies">Политика Cookie</button></div></form></div>`;
+  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в ALFA +'}</h2><p class="mut" style="margin:0">${reg?'Для регистрации нужны только имя, фамилия, телефон, почта и пароль.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_first','Имя','',{ph:'Иван'})+fld('r_last','Фамилия','',{ph:'Иванов'})+fld('r_phone','Телефон','',{type:'tel',ph:'+7 900 000-00-00'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'})+`<label class="legal-check"><input id="r_terms" type="checkbox" required><span>Принимаю <a href="#" data-legal="terms">Условия использования</a> и подтверждаю ознакомление с <a href="#" data-legal="privacy">Политикой конфиденциальности</a>.</span></label><label class="legal-check"><input id="r_pd" type="checkbox" required><span>Даю отдельное согласие на обработку моих персональных данных в целях регистрации и предоставления доступа к CRM согласно <a href="#" data-legal="pd">Согласию на обработку персональных данных</a>.</span></label>`:''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div><div class="legal-links"><button type="button" data-legal="privacy">Политика конфиденциальности</button><button type="button" data-legal="terms">Условия использования</button><button type="button" data-legal="cookies">Политика Cookie</button></div></form></div>`;
   showCookieNotice();
   $('#asw').onclick=()=>showAuth(reg?'login':'reg');
   $('#af').onsubmit=async e=>{e.preventDefault();const btn=$('#af').querySelector('button[type="submit"],button:not([type])');const err=t=>{$('#aerr').textContent=t};
@@ -1031,7 +1194,7 @@ function finishOB(){
   ME.onboarded=true;flush();if(cloudReady)scheduleWorkspaceSync();startApp();toast('Готово! Добавьте первого клиента');
 }
 /* Резервная копия */
-A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`vexon-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
+A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`alfa-plus-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
 A.restoreFile=()=>$('#rfile').click();
 /* Запуск */
 async function init(){
@@ -1041,7 +1204,8 @@ async function init(){
   $('#bellBtn').onclick=e=>{e.stopPropagation();drawBell();const p=$('#bellPop');p.hidden=!p.hidden};
   $('#meBtn').onclick=e=>{e.stopPropagation();const p=$('#mePop');p.hidden=!p.hidden};
   $('#gs').oninput=e=>gsearch(e.target.value);$('#gs').onfocus=e=>gsearch(e.target.value);
-  $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.lists)throw 0;const lg=ME.login,em=ME.email;restore(r.result);resetME({...ME,login:lg,onboarded:true});flush();paintShell();drawNav();toast('Данные восстановлены');go('home')}catch(x){toast('Файл не похож на резервную копию VEXON')}};r.readAsText(f);e.target.value=''};
+  $('#cfile').onchange=e=>{const f=e.target.files[0];if(f)importClientsFile(f);e.target.value=''};
+  $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.lists)throw 0;const lg=ME.login,em=ME.email;restore(r.result);resetME({...ME,login:lg,onboarded:true});flush();paintShell();drawNav();toast('Данные восстановлены');go('home')}catch(x){toast('Файл не похож на резервную копию ALFA +')}};r.readAsText(f);e.target.value=''};
   window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(h&&h!==cur&&!$('#app').hidden)go(h)});
   ['home','analytics','staff','finance'].forEach(k=>{const f=V[k];V[k]=()=>{recompute();f()}});
   window.addEventListener('pagehide',flush);
