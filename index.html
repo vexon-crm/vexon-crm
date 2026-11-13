@@ -1,103 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
-/* ===== ALFA + visual system ===== */
-:root{
- --bg:#111510;--bg2:#171d17;--card:rgba(29,36,29,.76);--card2:rgba(39,47,38,.78);
- --line:rgba(229,235,216,.13);--fg:#f1f0e8;--mut:#a4ad9d;--dim:#737e70;
- --acc:#cbd4a5;--acc2:#9eafa1;--accsoft:rgba(203,212,165,.12);
- --grad:linear-gradient(135deg,#d5ddb0 0%,#9eafa1 100%);
- --ok:#8eb99a;--warn:#d6b47b;--bad:#d98e83;--info:#9eafa1;
- --c1:#cbd4a5;--c2:#9eafa1;--c3:#8eb99a;--c4:#d6b47b;--c5:#d98e83;
- --shadow:0 24px 70px rgba(0,0,0,.32);color-scheme:dark;
-}
-:root[data-theme="light"]{
- --bg:#e9e9e1;--bg2:#e0e2d8;--card:rgba(250,250,244,.78);--card2:rgba(238,240,231,.88);
- --line:rgba(40,49,38,.13);--fg:#20271f;--mut:#667063;--dim:#899184;
- --acc:#667b5e;--acc2:#788c80;--accsoft:rgba(102,123,94,.11);
- --grad:linear-gradient(135deg,#778b68,#a5b5a6);
- --ok:#397b50;--warn:#9b753c;--bad:#ad5c52;--info:#647e73;
- --c1:#667b5e;--c2:#788c80;--c3:#397b50;--c4:#9b753c;--c5:#ad5c52;
- --shadow:0 22px 60px rgba(45,55,38,.13);color-scheme:light;
-}
-html,body{background:var(--bg)}
-body{
- background:radial-gradient(ellipse at 14% 4%,rgba(166,181,139,.13),transparent 32%),
- radial-gradient(ellipse at 88% 18%,rgba(122,147,133,.12),transparent 34%),
- linear-gradient(145deg,#111510 0%,#171d17 52%,#121713 100%);
-}
-body:before{
- content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.34;
- background-image:radial-gradient(rgba(240,242,224,.14) .65px,transparent .65px);
- background-size:5px 5px;mask-image:linear-gradient(to bottom,black,transparent 70%);
-}
-.app{position:relative;z-index:1;grid-template-columns:252px minmax(0,1fr)}
-.side{background:rgba(17,22,17,.78);border-right:1px solid var(--line);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);padding:24px 14px 18px}
-.brand{padding:2px 12px 24px;gap:12px}
-.logo{width:35px;height:35px;border-radius:11px;background:var(--grad);box-shadow:0 8px 24px rgba(181,194,150,.16)}
-.logo svg path{stroke:#1a2119}
-.wm{font:600 18px/1 'Space Grotesk',sans-serif;letter-spacing:.17em;color:var(--fg)}
-.wm i{font-style:normal;color:var(--acc);background:none;-webkit-text-fill-color:currentColor}
-.nav{gap:5px}
-.nav button{border-radius:9px;padding:11px 13px;color:#a7b0a1;font-size:13px;letter-spacing:.01em}
-.nav button:hover{background:rgba(229,235,216,.07);color:#fff}
-.nav button.on{background:rgba(203,212,165,.12);color:#f4f2e9;box-shadow:inset 2px 0 0 var(--acc)}
-.nav button.on svg{color:var(--acc)}
-.nav .badge{background:var(--acc);color:#20271d}
-.plan{background:rgba(238,242,224,.055);border-color:var(--line);border-radius:12px}
-.bar{background:rgba(238,242,224,.1)}.bar i{background:var(--grad)}
-.legal-side{padding-left:10px}
-.mainwrap{background:transparent}
-.top{background:rgba(17,22,17,.58);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--line);padding:13px 28px}
-.company{letter-spacing:.02em}.company small{color:var(--dim)}
-.search input{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:8px}
-.ibtn{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:9px}
-.me{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:999px}
-main{padding:30px 34px 42px}
-.view{max-width:1480px}
-.ph{margin-bottom:25px;align-items:center}
-.ph h1{font:500 clamp(25px,3vw,34px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-.045em}
-.ph p{color:var(--mut);font-size:13px;margin-top:7px}
-.eyebrow{font-size:9px;letter-spacing:.22em;color:var(--acc);font-weight:600;margin-bottom:10px}
-.dashboard-head{padding:18px 0 20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.08);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
-.card h3{font-size:14px;font-weight:500;letter-spacing:.015em;color:var(--fg)}
-.kpi{border-radius:12px;padding:17px 18px;min-height:125px}
-.kpi .l{font-size:11px;letter-spacing:.025em;color:var(--mut)}
-.kpi .v{font:500 26px/1.1 'Space Grotesk',sans-serif;letter-spacing:-.04em;margin:12px 0 4px}
-.kpi .ic{background:rgba(203,212,165,.1);color:var(--acc);border-radius:9px}
-.btn{border-radius:8px;background:rgba(255,255,255,.045);border-color:var(--line);font-size:12px;padding:9px 14px}
-.btn.pri{background:var(--acc);color:#20271d;border-color:var(--acc);box-shadow:none;font-weight:600}
-.btn.pri:hover{filter:brightness(1.07);transform:translateY(-1px)}
-.btn:hover{border-color:rgba(203,212,165,.55)}
-.btn.dng{color:var(--bad)}
-.ibtn:hover{border-color:var(--acc);color:var(--acc)}
-.tools input,.tools select,.fld input,.fld select,.fld textarea{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:8px}
-.tw{border-color:var(--line);border-radius:11px;background:rgba(255,255,255,.025)}
-th{background:rgba(255,255,255,.045);font-size:10px;letter-spacing:.1em;color:var(--dim)}
-td{border-top-color:var(--line);font-size:12px}
-tbody tr:hover{background:rgba(203,212,165,.06)}
-.pill{border-radius:5px;font-size:10px;letter-spacing:.015em}
-.seg{background:rgba(255,255,255,.035);border-color:var(--line);border-radius:8px}
-.seg button{font-size:11px}.seg button.on{background:rgba(203,212,165,.17);color:var(--fg)}
-.row{border-top-color:var(--line)}
-.modal,.legal-dialog{background:#1b211b;border-color:var(--line);border-radius:14px}
-.mh{background:#1b211b;border-color:var(--line)}
-.ov{backdrop-filter:blur(8px)}
-.auth{background:linear-gradient(120deg,rgba(12,17,13,.65),rgba(12,17,13,.9)),radial-gradient(ellipse at 22% 10%,rgba(177,192,143,.22),transparent 36%),radial-gradient(ellipse at 90% 85%,rgba(128,154,137,.18),transparent 40%),#111510}
-.auth-box{background:rgba(28,35,28,.72);border:1px solid rgba(230,235,216,.17);border-radius:15px;backdrop-filter:blur(28px);box-shadow:0 28px 100px rgba(0,0,0,.4)}
-.auth-pitch{background:linear-gradient(145deg,rgba(188,199,159,.22),rgba(119,142,128,.12));border-right:1px solid var(--line)}
-.auth-pitch h2{font:500 34px/1.12 'Space Grotesk',sans-serif;letter-spacing:-.045em;max-width:440px}
-.auth-pitch p{color:rgba(244,243,232,.76);font-size:13px}
-.auth-pitch li{font-size:12px;color:rgba(244,243,232,.82)}
-.auth-form h2{font:500 25px 'Space Grotesk',sans-serif}
-.auth-form .fld input,.auth-form .fld select,.emprow input{background:rgba(255,255,255,.055);border-color:var(--line);border-radius:8px}
-.toast{background:#242d24;border:1px solid rgba(203,212,165,.45);border-radius:8px}
-.pop,.sres{background:#202820;border-color:var(--line);border-radius:11px}
-@media(max-width:860px){.side{background:rgba(18,24,18,.96)}.top{padding:10px 13px}main{padding:19px 15px 30px}.dashboard-head{padding-top:8px}}
-@media(max-width:520px){.ph h1{font-size:25px}.kpi .v{font-size:23px}.auth-pitch h2{font-size:27px}}
-
-</style></head><body>
-<title>ALFA + — CRM</title>
-<meta name="claude:viewport-fit-sides" content="cover"><meta name="theme-color" content="#111510"><meta name="description" content="ALFA + — рабочее пространство для клиентов, сделок и команды.">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>alfa+</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
 <style>
 /* Макет: фиксированный сайдбар + верхняя панель + прокручиваемая рабочая область; на телефоне сайдбар становится выдвижным */
@@ -362,89 +265,6 @@ tr.click{cursor:pointer}
 .cookie-banner{position:fixed;z-index:600;left:16px;right:16px;bottom:18px;width:min(760px,calc(100% - 32px));margin:auto;padding:20px 22px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.32);display:flex;gap:22px;align-items:center;justify-content:space-between;animation:in .22s ease-out}
 .cookie-banner b{display:block;font-size:15px;margin-bottom:6px}.cookie-banner p{margin:0;color:var(--mut);font-size:12px;line-height:1.55}.cookie-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:none}.cookie-actions .btn{white-space:nowrap}
 @media(max-width:640px){.cookie-banner{left:10px;right:10px;bottom:10px;width:calc(100% - 20px);display:block;padding:17px}.cookie-actions{margin-top:13px}.cookie-actions .btn{flex:1;justify-content:center}.legal-body{padding:16px}}
-
-/* ==========================================================
-   ALFA + — GLACIER / FROSTED LANDSCAPE DESIGN SYSTEM
-   Complete visual replacement inspired by the supplied reference.
-   Existing application structure and event handlers are preserved.
-   ========================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap');
-:root, :root[data-theme="dark"], :root[data-theme="light"]{
- --bg:#e8e9e5;--bg2:rgba(238,240,237,.74);--card:rgba(247,248,246,.78);--card2:rgba(230,233,229,.72);--line:rgba(255,255,255,.58);
- --fg:#20231f;--mut:#626a62;--dim:#8b928b;--acc:#89977d;--acc2:#68765f;--accsoft:rgba(133,149,119,.17);
- --grad:linear-gradient(135deg,#aeb9a1,#75836c);--ok:#617e61;--warn:#a58a59;--bad:#a76f6b;--info:#788b9a;
- --shadow:0 24px 80px rgba(18,24,19,.16);--c1:#87977a;--c2:#8799a0;--c3:#71866f;--c4:#b19b70;--c5:#a87872;
- --fd:'Montserrat','Manrope',sans-serif;--fb:'Manrope',sans-serif;color-scheme:light;
-}
-*{box-sizing:border-box}
-html,body{height:100%;min-height:100%;}
-body{position:relative;isolation:isolate;background:#3e4540;color:var(--fg);font:400 13px/1.55 var(--fb);letter-spacing:.005em;overflow:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90');background-size:cover;background-position:center 48%;transform:scale(1.025)}
-body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(22,28,25,.56),rgba(30,37,34,.28) 50%,rgba(22,27,25,.47)),linear-gradient(0deg,rgba(18,23,21,.38),transparent 58%);pointer-events:none}
-button,input,select,textarea{font-family:var(--fb);color:var(--fg)}
-button{font-weight:500;letter-spacing:.01em}
-h1,h2,h3,h4{font-family:var(--fd);font-weight:400;letter-spacing:-.045em;color:#252a25}
-.app{position:relative;z-index:1;grid-template-columns:250px minmax(0,1fr);gap:0;padding:24px;height:100%;min-height:0}
-.side{margin:0 14px 0 0;padding:25px 17px 18px;background:rgba(226,230,224,.72);border:1px solid rgba(255,255,255,.58);border-radius:3px 0 0 3px;backdrop-filter:blur(28px) saturate(125%);-webkit-backdrop-filter:blur(28px) saturate(125%);box-shadow:0 18px 60px rgba(10,15,12,.15);color:#242923;gap:10px}
-.brand{padding:3px 10px 28px;gap:12px;font:500 19px var(--fd);letter-spacing:.13em;color:#20251f}
-.logo{width:34px;height:34px;border-radius:2px;background:rgba(52,62,52,.9);box-shadow:none}
-.logo svg{width:18px;height:18px}
-.wm{font:500 19px/1 var(--fd);letter-spacing:.2em;color:#252a25}
-.wm i{font-style:normal;color:#77866b;background:none;-webkit-text-fill-color:initial}
-.nav{gap:5px}
-.nav:before{content:"WORKSPACE";display:block;padding:3px 12px 10px;font:600 9px var(--fb);letter-spacing:.19em;color:#7d857b}
-.nav button{padding:11px 12px;border-radius:2px;gap:13px;color:#687067;font-size:12px;letter-spacing:.015em;transition:background .2s,color .2s}
-.nav button svg{width:16px;height:16px;opacity:.8}
-.nav button:hover{background:rgba(255,255,255,.44);color:#222920}
-.nav button.on{background:rgba(255,255,255,.74);color:#252b24;box-shadow:inset 2px 0 #7f8d73}
-.nav button.on svg{color:#74836a}
-.nav .badge{background:#77866d;color:white;border-radius:2px;font-size:10px;padding:2px 6px}
-.plan{margin-top:auto;background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.48);border-radius:2px;padding:14px;color:#687067;font-size:11px}
-.plan b{font:600 11px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:#333b32}
-.bar{height:3px;background:rgba(86,99,81,.17);border-radius:0}.bar i{background:#819075;border-radius:0}
-.legal-side{padding:10px 6px 0;font-size:10px;gap:7px 11px}.legal-side button{color:#72796f}
-.mainwrap{min-width:0;min-height:0;overflow:hidden;background:rgba(240,242,238,.76);border:1px solid rgba(255,255,255,.66);border-left:0;border-radius:0 3px 3px 0;backdrop-filter:blur(24px) saturate(120%);-webkit-backdrop-filter:blur(24px) saturate(120%);box-shadow:0 18px 60px rgba(10,15,12,.15)}
-.top{min-height:62px;padding:12px 28px;background:rgba(250,251,249,.52);border-bottom:1px solid rgba(255,255,255,.68);gap:14px}
-.company{font:500 12px var(--fb);letter-spacing:.08em;text-transform:uppercase;color:#343b33}.company small{font:400 10px var(--fb);color:#838b81}
-.search{max-width:420px}.search input{padding:10px 14px 10px 38px;background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.7);border-radius:2px;font-size:11px;color:#343a33}.search input::placeholder{color:#8b9289}.search input:focus{border-color:#9ca894;background:rgba(255,255,255,.8)}.search svg{color:#7e877b;top:11px}
-.ibtn{width:34px;height:34px;border-radius:2px;border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.42);color:#687168}.ibtn:hover{border-color:#a6b19d;color:#30382e;background:rgba(255,255,255,.8)}
-.me{border:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.42);border-radius:2px;padding:3px 10px 3px 3px;color:#333a32}.me .av{border-radius:2px;background:#87947d!important}.me span{font-size:11px}
-.av{border-radius:2px!important}.av.s{border-radius:2px!important}
-main{padding:28px 34px 36px;background:transparent;scrollbar-color:rgba(105,119,99,.32) transparent;scrollbar-width:thin}
-.view{max-width:1480px;animation:in .55s ease both}
-.ph{margin-bottom:25px;align-items:center}.ph h1{font-size:clamp(29px,3vw,43px);font-weight:300;letter-spacing:-.065em;line-height:1.05;color:#222922}.ph p{font-size:11px;color:#747d72;letter-spacing:.035em;margin-top:8px}.ph .acts{gap:7px}
-.btn{padding:9px 15px;border-radius:2px;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.52);color:#394137;font-size:11px;letter-spacing:.04em;transition:all .2s}.btn:hover{border-color:#9da995;background:rgba(255,255,255,.82)}.btn.pri{background:#74836c;border-color:#74836c;color:#fff;box-shadow:0 6px 18px rgba(65,78,59,.18)}.btn.pri:hover{background:#5f7057;border-color:#5f7057;filter:none;transform:translateY(-1px)}.btn.dng{color:#a76f6b}.btn.sm{padding:6px 10px;border-radius:2px;font-size:10px}
-.card{background:rgba(250,251,249,.64);border:1px solid rgba(255,255,255,.78);border-radius:2px;padding:20px;box-shadow:0 8px 28px rgba(44,53,43,.045);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.card h3{font:500 12px var(--fb);letter-spacing:.055em;text-transform:uppercase;color:#515b4e;margin-bottom:16px}.card h3 .btn{margin-left:auto}
-.kpi{min-height:132px;padding:19px 18px;background:rgba(249,250,248,.66)}.kpi .l{font-size:10px;letter-spacing:.075em;text-transform:uppercase;color:#788174}.kpi .v{font:300 clamp(24px,2.3vw,32px) var(--fd);letter-spacing:-.06em;color:#283027;margin:12px 0 5px}.kpi .d{font-size:10px;color:#75816e}.kpi .ic{right:16px;top:16px;width:29px;height:29px;border-radius:2px;background:rgba(128,145,113,.13);color:#78866d}.kpi .ic svg{width:15px;height:15px}.kpi .spark{opacity:.55}
-.grid{gap:13px}.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.g5{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
-.tw{border:1px solid rgba(255,255,255,.76);border-radius:2px;background:rgba(255,255,255,.32)}table{font-size:11px}th{background:rgba(226,231,224,.66);color:#737d70;font:600 9px var(--fb);letter-spacing:.12em;padding:12px 14px}td{padding:12px 14px;border-top:1px solid rgba(255,255,255,.65);color:#3e473c}tbody tr:hover{background:rgba(255,255,255,.62)}
-.pill{border-radius:2px;padding:3px 8px;font-size:10px;background:rgba(128,145,113,.14);color:#697a60}.pill.ok{background:rgba(104,137,103,.15);color:#5d795b}.pill.warn{background:rgba(177,151,102,.16);color:#92784b}.pill.bad{background:rgba(171,112,105,.15);color:#9b6962}.pill.info{background:rgba(117,143,158,.15);color:#687f8c}.pill.gray{background:rgba(108,117,105,.12);color:#727a70}
-.tools{gap:8px;margin-bottom:13px}.tools input,.tools select,.fld input,.fld select,.fld textarea{background:rgba(255,255,255,.64);border:1px solid rgba(255,255,255,.9);border-radius:2px;padding:10px 12px;font-size:11px;color:#394137}.tools input:focus,.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:#9da995;outline:none}.tools input::placeholder,.fld input::placeholder{color:#939b90}
-.seg{background:rgba(231,235,229,.68);border:1px solid rgba(255,255,255,.8);border-radius:2px;padding:2px}.seg button{border-radius:1px;font-size:10px;color:#737c70}.seg button.on{background:#7b896f;color:#fff}
-.row{border-color:rgba(255,255,255,.65)}.row .grow b{font-size:11px;color:#3d463a}.row small,.mut{color:#7d8679}
-.pop,.sres{background:rgba(246,248,244,.94);border:1px solid rgba(255,255,255,.88);border-radius:2px;box-shadow:0 18px 45px rgba(30,39,29,.16);backdrop-filter:blur(20px)}.pop .it:hover,.sres button:hover{background:rgba(133,149,119,.13)}
-.modal,.legal-dialog{background:rgba(245,247,243,.97);border:1px solid rgba(255,255,255,.9);border-radius:2px;color:#30382f;box-shadow:0 25px 90px rgba(15,22,16,.28);backdrop-filter:blur(24px)}.mh,.legal-head{background:rgba(245,247,243,.96);border-color:#e1e6de}.mh h3,.legal-head h2{font-size:17px;color:#30382f}.mb{color:#424b40}.mf{border-color:#e1e6de}.fld label{color:#778174;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
-.kan{gap:11px}.col{background:rgba(232,236,229,.66);border:1px solid rgba(255,255,255,.78);border-radius:2px}.col h4{font-size:11px;color:#485244}.deal{background:rgba(250,251,249,.78);border:1px solid rgba(255,255,255,.88);border-radius:2px}.deal:hover{border-color:#a3af99;box-shadow:0 12px 30px rgba(35,45,33,.1)}.deal b{font-size:11px;color:#3a4437}.deal .amt{font:500 16px var(--fd);color:#333d31}
-.tabs{border-color:rgba(255,255,255,.8)}.tabs button{font-size:11px}.tabs button.on{color:#3b4737;border-color:#829174}
-.cal .d{background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.78);border-radius:2px}.cal .d.t{border-color:#8c9a81}.cal .ev{border-radius:1px;background:rgba(127,145,112,.2);color:#3d4838}
-.chat{background:rgba(250,251,249,.42);border:1px solid rgba(255,255,255,.72)}.chat .dl{border-color:rgba(255,255,255,.75)}.chat .dlg{border-color:rgba(255,255,255,.65)}.chat .dlg:hover,.chat .dlg.on{background:rgba(255,255,255,.58)}.chat .hd{border-color:rgba(255,255,255,.75)}.msg{border-radius:2px;background:rgba(223,229,219,.82);color:#384235}.msg.me{background:#78866e;color:#fff}
-.node{border-radius:2px;background:rgba(255,255,255,.62);border-color:rgba(255,255,255,.8)}.node.t,.node.a{border-color:#9eac94}.sw{border-radius:2px;background:#d2d8cf}.sw::after{border-radius:1px;background:white}.sw.on{background:#819074}
-.ov{background:rgba(24,31,25,.48);backdrop-filter:blur(8px)}.toast{border-radius:2px;background:rgba(247,249,245,.96);border-color:#9ca991;color:#354032}
-.empty{color:#7c8578}.chk{border-radius:2px;border-color:#9da797}.chk.on{background:#7c8d72;border-color:#7c8d72}
-.auth{background-image:none;background-color:transparent;backdrop-filter:none}.auth:before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(20,27,23,.58),rgba(24,31,26,.3)),url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90') center/cover}
-.auth-box{width:min(1040px,100%);grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);border:1px solid rgba(255,255,255,.66);border-radius:2px;background:rgba(241,244,239,.78);box-shadow:0 30px 100px rgba(0,0,0,.24);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px)}
-.auth-pitch{position:relative;min-height:530px;padding:36px 38px;background:linear-gradient(145deg,rgba(38,46,40,.76),rgba(87,98,82,.48));color:#fff;justify-content:space-between;overflow:hidden}
-.auth-pitch:after{content:"ALFA";position:absolute;left:28px;bottom:90px;font:300 clamp(88px,13vw,170px)/.85 var(--fd);letter-spacing:-.09em;color:rgba(255,255,255,.18);pointer-events:none}
-.auth-pitch .brand{position:relative;z-index:1;color:white;padding:0}.auth-pitch .wm{font:400 19px var(--fd);letter-spacing:.22em;color:white}.auth-pitch .wm i{color:#c1cbb8}.auth-pitch .logo{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35)}
-.auth-pitch h2{position:relative;z-index:1;max-width:390px;font:300 clamp(29px,3.4vw,44px)/1.1 var(--fd);letter-spacing:-.055em;color:white}.auth-pitch p,.auth-pitch ul{position:relative;z-index:1;color:rgba(255,255,255,.78);font-size:11px}.auth-pitch ul{gap:9px}.auth-pitch li::before{color:#d0d8c8}
-.auth-form{padding:48px 44px;gap:15px;background:rgba(249,250,247,.72)}.auth-form h2{font:300 31px var(--fd);letter-spacing:-.055em;color:#30392f}.auth-form p{font-size:11px;color:#778174}.auth-form .fld input,.auth-form .fld select,.emprow input{background:rgba(255,255,255,.76);border:1px solid #e2e7df;border-radius:2px;padding:12px}.auth-form .btn.pri{padding:12px}.link,.legal-links button,.legal-side button{color:#72836a}
-.cookie-banner{background:rgba(246,248,244,.96);border:1px solid white;border-radius:2px;color:#354032;box-shadow:0 18px 50px rgba(20,30,20,.2);backdrop-filter:blur(18px)}.cookie-banner p{color:#778174}
-@media(max-width:1100px){.app{grid-template-columns:220px minmax(0,1fr);padding:14px}.side{margin-right:9px}.top{padding:11px 18px}main{padding:22px}}
-@media(max-width:860px){.app{padding:0;display:block}.side{margin:0;position:fixed;left:0;top:0;bottom:0;width:276px;z-index:90;border-radius:0 2px 2px 0;transform:translateX(-105%);background:rgba(230,234,227,.94)}.side.open{transform:none}.mainwrap{height:100%;border:0;border-radius:0;background:rgba(240,242,238,.82)}.top{min-height:58px;padding:10px 14px;background:rgba(246,248,244,.72)}main{padding:22px 16px 28px}.scrim.show{background:rgba(16,22,17,.48);backdrop-filter:blur(4px)}.auth-box{grid-template-columns:1fr}.auth-pitch{min-height:250px;padding:24px}.auth-pitch:after{font-size:90px;bottom:26px;left:auto;right:18px}.auth-pitch ul{display:none}.auth-pitch h2{font-size:30px;max-width:330px}.auth-form{padding:26px 22px}}
-@media(max-width:520px){.ph{align-items:flex-start}.ph h1{font-size:28px}.ph .acts{width:100%;margin:8px 0 0}.ph .acts .btn{flex:1;justify-content:center}.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{min-height:116px;padding:14px}.kpi .v{font-size:24px}.kpi .l{font-size:9px}.top .search{max-width:none}.company{display:none}.auth{padding:0}.auth-box{min-height:100%;border:0}.auth-pitch{min-height:220px}.auth-form{padding:24px 20px}.form{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important}}
-
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -475,9 +295,88 @@ main{padding:28px 34px 36px;background:transparent;scrollbar-color:rgba(105,119,
 <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12m-5-5l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
+<style id="alfa-skin">
+/* alfa+ — стеклянная тема: пейзаж, матовые панели, ледяной акцент */
+:root{--fw:'Unbounded','Space Grotesk',system-ui,sans-serif;
+ --bg:#071014;--bg2:rgba(8,18,22,.5);--card:rgba(13,26,31,.56);--card2:rgba(255,255,255,.07);--line:rgba(190,235,240,.16);--fg:#eaf5f4;--mut:#9fb6b8;--dim:#70898d;
+ --acc:#7fe0f5;--acc2:#a6d96a;--accsoft:rgba(127,224,245,.13);--grad:linear-gradient(135deg,#7fe0f5,#a6d96a);
+ --ok:#5be3a4;--warn:#f0c15a;--bad:#ff7b8f;--info:#7fe0f5;--shadow:0 30px 70px -32px rgba(0,0,0,.8);
+ --c1:#7fe0f5;--c2:#a6d96a;--c3:#b79cff;--c4:#f0c15a;--c5:#ff7b8f;
+ --pop:rgba(9,19,23,.92);--solid:#0d1a1f;--onacc:#04181d;--glow:0 0 22px rgba(127,224,245,.32);
+ --veil:linear-gradient(180deg,rgba(4,10,13,.58),rgba(4,10,13,.84));color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+ --bg:#e6efee;--bg2:rgba(255,255,255,.5);--card:rgba(255,255,255,.66);--card2:rgba(255,255,255,.55);--line:rgba(20,52,58,.15);--fg:#0f2124;--mut:#44595c;--dim:#6d8386;
+ --acc:#0a7a99;--acc2:#4a8a22;--accsoft:rgba(10,122,153,.1);--grad:linear-gradient(135deg,#0a7a99,#4a8a22);
+ --ok:#0f8a5a;--warn:#a8680f;--bad:#c4304a;--info:#0a7a99;--shadow:0 24px 60px -34px rgba(20,50,60,.45);
+ --c1:#0a7a99;--c2:#4a8a22;--c3:#7a55d6;--c4:#c98a14;--c5:#c4304a;
+ --pop:rgba(255,255,255,.94);--solid:#fff;--onacc:#fff;--glow:0 6px 18px rgba(10,122,153,.3);
+ --veil:linear-gradient(180deg,rgba(236,245,244,.5),rgba(236,245,244,.8));color-scheme:light}}
+:root[data-theme="light"]{
+ --bg:#e6efee;--bg2:rgba(255,255,255,.5);--card:rgba(255,255,255,.66);--card2:rgba(255,255,255,.55);--line:rgba(20,52,58,.15);--fg:#0f2124;--mut:#44595c;--dim:#6d8386;
+ --acc:#0a7a99;--acc2:#4a8a22;--accsoft:rgba(10,122,153,.1);--grad:linear-gradient(135deg,#0a7a99,#4a8a22);
+ --ok:#0f8a5a;--warn:#a8680f;--bad:#c4304a;--info:#0a7a99;--shadow:0 24px 60px -34px rgba(20,50,60,.45);
+ --c1:#0a7a99;--c2:#4a8a22;--c3:#7a55d6;--c4:#c98a14;--c5:#c4304a;
+ --pop:rgba(255,255,255,.94);--solid:#fff;--onacc:#fff;--glow:0 6px 18px rgba(10,122,153,.3);
+ --veil:linear-gradient(180deg,rgba(236,245,244,.5),rgba(236,245,244,.8));color-scheme:light}
+*{scrollbar-width:thin;scrollbar-color:rgba(150,210,222,.35) transparent}
+html{background:#071014}
+body{background:transparent}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--veil),url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201600%201000'%20preserveAspectRatio='xMidYMid%20slice'%3E%3Cdefs%3E%3ClinearGradient%20id='a'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23eef3f2'/%3E%3Cstop%20offset='.55'%20stop-color='%23b7c8c6'/%3E%3Cstop%20offset='1'%20stop-color='%237b9294'/%3E%3C/linearGradient%3E%3ClinearGradient%20id='m'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%2393a54c'/%3E%3Cstop%20offset='1'%20stop-color='%233b4a24'/%3E%3C/linearGradient%3E%3ClinearGradient%20id='f'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23e9f0ef'%20stop-opacity='0'/%3E%3Cstop%20offset='1'%20stop-color='%23e9f0ef'%20stop-opacity='.8'/%3E%3C/linearGradient%3E%3Cfilter%20id='b'%3E%3CfeGaussianBlur%20stdDeviation='7'/%3E%3C/filter%3E%3Cfilter%20id='c'%3E%3CfeGaussianBlur%20stdDeviation='30'/%3E%3C/filter%3E%3C/defs%3E%3Crect%20width='1600'%20height='1000'%20fill='url(%23a)'/%3E%3Cpath%20d='M0%20430L170%20330%20340%20390%20520%20270%20700%20370%20890%20300%201100%20410%201300%20320%201600%20440V640H0Z'%20fill='%238ea5a8'%20opacity='.75'%20filter='url(%23b)'/%3E%3Cpath%20d='M-20%20660L160%20480%20340%20390%20470%20305%20560%20250%20625%20285%20770%20450%20900%20530%201040%20440%201180%20365%201300%20335%201440%20405%201620%20530V780H-20Z'%20fill='url(%23m)'/%3E%3Cpath%20d='M470%20305L520%20540M560%20250L640%20570M625%20285L700%20520M340%20390L400%20560M1180%20365L1240%20560M1300%20335L1380%20540'%20stroke='%2327361a'%20stroke-opacity='.4'%20stroke-width='9'%20stroke-linecap='round'/%3E%3Cpath%20d='M-20%20700L220%20600%20430%20650%20700%20560%20980%20640%201260%20560%201620%20640V820H-20Z'%20fill='%23566a2d'%20opacity='.9'/%3E%3Cpath%20d='M300%20770Q700%20705%201150%20745Q1320%20810%201100%20868Q700%20910%20330%20850Z'%20fill='%237cb4b9'/%3E%3Crect%20y='520'%20width='1600'%20height='280'%20fill='url(%23f)'%20filter='url(%23c)'/%3E%3Cpath%20d='M0%20820Q300%20760%20600%20830T1200%20805T1600%20770V1000H0Z'%20fill='%230c1316'/%3E%3C/svg%3E") center/cover no-repeat}
+input::placeholder,textarea::placeholder{color:var(--dim)}
+select option{background:var(--solid);color:var(--fg)}
+/* оболочка */
+.app{grid-template-columns:268px minmax(0,1fr);gap:16px;padding:16px}
+.side,.top{background:var(--bg2);-webkit-backdrop-filter:blur(26px) saturate(1.35);backdrop-filter:blur(26px) saturate(1.35);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),var(--shadow)}
+.side{border-radius:26px;padding:20px 12px}
+.top{border-radius:20px;margin-bottom:14px;padding:10px 14px}
+main{padding:4px 2px 24px}
+.brand{padding:2px 10px 18px}
+.logo{width:36px;height:36px;border-radius:13px;background:var(--accsoft);border:1px solid var(--acc);box-shadow:var(--glow)}
+.logo svg{width:20px;height:20px}
+.logo svg path{stroke:var(--acc)}
+.wm{font:600 18px var(--fw);letter-spacing:-.01em}
+.wm i{font-style:normal;background:none;color:var(--acc);text-shadow:0 0 16px var(--acc)}
+.nav button{border-radius:14px}
+.nav button.on{background:linear-gradient(90deg,var(--accsoft),transparent 90%);box-shadow:inset 2px 0 0 var(--acc)}
+.nav button.on svg{filter:drop-shadow(0 0 6px var(--acc))}
+.nav .badge{color:var(--onacc);font-weight:600}
+.plan{background:var(--card2);border-radius:18px}
+.ibtn,.me{background:var(--card2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ibtn{border-radius:14px}
+.search input{background:var(--card2);border-radius:999px}
+.ph h1{font:600 24px var(--fw);letter-spacing:-.025em}
+/* стекло */
+.card,.col{background:var(--card);-webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);border-color:var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),var(--shadow)}
+.card{border-radius:22px}
+.col{background:var(--bg2);border-radius:20px}
+.btn{background:var(--card2);border-radius:999px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn.pri{color:var(--onacc);font-weight:600;box-shadow:var(--glow)}
+.modal,.pop,.sres,.toast{background:var(--pop);color:var(--fg);-webkit-backdrop-filter:blur(30px) saturate(1.4);backdrop-filter:blur(30px) saturate(1.4)}
+.modal{border-radius:26px}.pop{border-radius:20px}
+.scrim.show{background:rgba(2,8,10,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+/* показатели: угловые метки как у приборной панели */
+.kpi::before,.kpi::after{content:"";position:absolute;width:9px;height:9px;border:1.5px solid var(--acc);opacity:.75;pointer-events:none}
+.kpi::before{left:7px;top:7px;border-right:0;border-bottom:0}
+.kpi::after{left:7px;bottom:7px;border-right:0;border-top:0}
+.kpi .v{font-weight:500;font-size:30px;letter-spacing:-.02em}
+.kpi .ic{border-radius:50%}
+/* вход: крупный контурный логотип, матовая панель слева */
+.auth{background:radial-gradient(1200px 700px at 18% 0,rgba(4,12,14,.08),rgba(4,10,12,.5)),linear-gradient(rgba(4,10,12,.22),rgba(4,10,12,.42))}
+.auth-box{width:1040px;grid-template-columns:minmax(0,1.15fr) minmax(0,440px);background:transparent;border:1px solid rgba(255,255,255,.24);border-radius:30px;box-shadow:0 50px 110px -40px rgba(0,0,0,.85)}
+.auth-pitch{background:linear-gradient(155deg,rgba(255,255,255,.2),rgba(255,255,255,.03) 62%),rgba(10,20,22,.4);-webkit-backdrop-filter:blur(32px) saturate(1.2);backdrop-filter:blur(32px) saturate(1.2);padding:40px;gap:14px;min-height:580px;border-right:1px solid rgba(255,255,255,.18)}
+.auth-pitch h2{font-weight:500;font-size:26px;letter-spacing:-.02em}
+.auth-pitch li::before{content:"";width:6px;height:6px;margin-top:.55em;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);flex:none}
+.auth-form{background:var(--card);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--fg)}
+.amark{margin-bottom:auto;font:700 clamp(56px,9vw,108px)/1 var(--fw);letter-spacing:-.045em;color:rgba(255,255,255,.1);-webkit-text-stroke:1.5px rgba(255,255,255,.72);animation:reveal 1.2s cubic-bezier(.2,.7,.2,1) both}
+.amark i{font-style:normal;color:#fff;-webkit-text-stroke:0;text-shadow:0 0 34px #7fe0f5}
+@keyframes reveal{from{opacity:0;filter:blur(18px);transform:translateY(10px)}to{opacity:1;filter:none;transform:none}}
+@media (max-width:1100px){.app{grid-template-columns:240px minmax(0,1fr)}}
+@media (max-width:860px){.app{grid-template-columns:1fr;gap:0;padding:8px}.top{margin-bottom:10px}.side{border-radius:0 26px 26px 0;background:var(--pop)}}
+@media (max-width:760px){.auth-pitch{min-height:0;padding:22px;border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}.amark{margin-bottom:10px}}
+</style>
 <div class="app" id="app" hidden>
  <aside class="side" id="side" aria-label="Главное меню">
-  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">ALFA <i>+</i></span></div>
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M12 2.8l8 4.6v9.2l-8 4.6-8-4.6V7.4z" fill="none" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8v8M8 12h8" fill="none" stroke-width="2" stroke-linecap="round"/></svg></div><span class="wm">alfa<i>+</i></span></div>
   <nav class="nav" id="nav"></nav>
   <div class="plan"><b>Тариф «Старт»</b>Сотрудников: <span id="planU">1</span> из 15<div class="bar"><i style="width:53%"></i></div>Пробный период 14 дней</div>
   <div class="legal-side"><button type="button" data-legal="privacy">Конфиденциальность</button><button type="button" data-legal="terms">Условия</button><button type="button" data-legal="cookies">Cookie</button><button type="button" id="cookieSettings">Cookie-настройки</button></div>
@@ -497,7 +396,7 @@ main{padding:28px 34px 36px;background:transparent;scrollbar-color:rgba(105,119,
  </div>
 </div>
 <div id="auth" hidden></div>
-<input type="file" id="rfile" accept=".json,application/json" hidden><input type="file" id="cfile" accept=".csv,text/csv" hidden>
+<input type="file" id="rfile" accept=".json,application/json" hidden>
 <div id="layer"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -595,7 +494,7 @@ let theme='dark';
 try{const t=localStorage.getItem('vexon-theme');if(t)theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)theme='light'}catch(e){}
 function setTheme(t){theme=t;document.documentElement.dataset.theme=t;$('#themeIc').setAttribute('href',t==='dark'?'#i-sun':'#i-moon');try{localStorage.setItem('vexon-theme',t)}catch(e){}}
 /* Навигация и маршрутизация */
-const NAV=[['home','Главная','home'],['clients','Клиенты','users'],['deals','Сделки','deal'],['tasks','Задачи','tasks'],['analytics','Аналитика','chart'],['messages','Сообщения','msg'],['products','Товары и склад','box'],['finance','Финансы','wallet'],['automation','Автоматизация','zap'],['staff','Сотрудники','team'],['settings','Настройки','set']];
+const NAV=[['home','Главная','home'],['clients','Клиенты','users'],['deals','Сделки','deal'],['tasks','Задачи','tasks'],['analytics','Аналитика','chart'],['messages','Сообщения','msg'],['phone','Телефония','phone'],['products','Товары и склад','box'],['finance','Финансы','wallet'],['automation','Автоматизация','zap'],['staff','Сотрудники','team'],['settings','Настройки','set']];
 const V={};let cur='home';
 function go(name){if(!V[name])name='home';cur=name;if(location.hash!=='#'+name)history.replaceState(null,'','#'+name);
   $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===name));
@@ -674,7 +573,7 @@ V.home=()=>{
   const won=deals.filter(d=>d.stage==='won').length,lost=deals.filter(d=>d.stage==='lost').length,conv=Math.round(won/(won+lost||1)*100);
   const kp=(l,v,d,ic,sp,c)=>`<div class="card kpi"><div class="ic">${ico(ic)}</div><div class="l">${l}</div><div class="v">${v}</div>${demo?`<div class="d ${d[0]=='-'?'down':'up'}">${d[0]=='-'?'▼':'▲'} ${d.replace('-','')} <span class="mut">к прошлому месяцу</span></div>${spark(sp,c)}`:''}</div>`;
   const nextT=tasks.filter(t=>t.status!=='Выполнена').sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);
-  $('#view').innerHTML=`<div class="ph dashboard-head"><div><div class="eyebrow">ALFA + / РАБОЧЕЕ ПРОСТРАНСТВО</div><h1>${(h=>h<5?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер')(new Date().getHours())}, ${esc((ME.name||'').split(' ')[0])}</h1><p>Сводка по компании на ${new Date(TODAY).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</p></div><div class="acts"><button class="btn" data-act="newTask">${ico('plus')}Задача</button><button class="btn pri" data-act="newDeal">${ico('plus')}Новая сделка</button></div></div>
+  $('#view').innerHTML=`<div class="ph"><div><h1>${(h=>h<5?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер')(new Date().getHours())}, ${esc((ME.name||'').split(' ')[0])}</h1><p>Сводка по компании на ${new Date(TODAY).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</p></div><div class="acts"><button class="btn" data-act="newTask">${ico('plus')}Задача</button><button class="btn pri" data-act="newDeal">${ico('plus')}Новая сделка</button></div></div>
   ${!demo&&(!clients.length||!deals.length||!tasks.length)?firstSteps():''}<div class="grid g5">
    ${kp('Выручка с начала года',mln(total),'12,4%','wallet',revenue.slice(0,MO),'--c1')}
    ${kp('Новых клиентов за 30 дней',newC,'8,1%','users',[3,5,4,6,5,7,newC],'--c2')}
@@ -687,7 +586,7 @@ V.home=()=>{
    <div class="card"><h3>Ближайшие задачи<button class="btn sm" data-go="tasks">Все</button></h3><div class="list">${nextT.length?'':'<div class="empty">Открытых задач нет</div>'}${nextT.map(t=>`<div class="row"><button class="chk" data-act="tdone" data-id="${t.id}" aria-label="Выполнить"></button><div class="grow"><b>${esc(t.title)}</b><small>${t.due===iso(0)?'Сегодня':fd(t.due)} · ${esc(mgrOf(t.mgr).name)}</small></div>${ppill(t.prio)}</div>`).join('')}</div></div>
   </div>
   <div class="grid g2" style="margin-top:16px">
-   <div class="card"><h3>Последние сделки<button class="btn sm" data-go="deals">Воронка</button></h3><div class="tw"><table><tbody>${deals.length?'':'<tr><td><div class="empty">Сделок пока нет</div></td></tr>'}${[...deals].sort((a,b)=>b.created.localeCompare(a.created)).slice(0,6).map(d=>{const s=STAGES.find(x=>x.id===d.stage);return `<tr class="click" data-act="deal" data-id="${d.id}"><td style="white-space:normal;min-width:160px">${esc(d.title)}<br><small class="mut">${esc(cliOf(d.cid)?.company||'')}</small></td><td>${rub(d.sum)}</td><td><span class="pill" style="color:${s.c};background:color-mix(in srgb,${s.c} 16%,transparent)">${s.name}</span></td></tr>`}).join('')}</tbody></table></div></div>
+   <div class="card"><h3>Последние сделки<button class="btn sm" data-go="deals">Воронка</button></h3><div class="tw"><table><tbody>${deals.length?'':'<tr><td><div class="empty">Сделок пока нет</div></td></tr>'}${[...deals].sort((a,b)=>b.created.localeCompare(a.created)).slice(0,6).map(d=>{const s=STAGES.find(x=>x.id===d.stage);return `<tr class="click" data-act="deal" data-id="${d.id}"><td style="white-space:normal;min-width:160px">${esc(d.title)}<br><small class="mut">${esc(cliOf(d.cid).company)}</small></td><td>${rub(d.sum)}</td><td><span class="pill" style="color:${s.c};background:color-mix(in srgb,${s.c} 16%,transparent)">${s.name}</span></td></tr>`}).join('')}</tbody></table></div></div>
    <div class="card"><h3>Действия сотрудников</h3><div class="list">${activity.length?'':'<div class="empty">Здесь появятся действия команды</div>'}${activity.map(a=>`<div class="row">${av(a.mgr)}<div class="grow" style="white-space:normal"><b style="white-space:normal;font-weight:400"><b style="display:inline">${esc(mgrOf(a.mgr).name.split(' ')[0])}</b> ${a.t}</b><small>${a.ago}</small></div></div>`).join('')}</div></div>
   </div>`;
 };
@@ -697,7 +596,7 @@ A.deal=b=>openDeal(+b.dataset.id);
 /* ===== Клиенты ===== */
 const CF={q:'',status:'',source:'',mgr:''};
 V.clients=()=>{
-  $('#view').innerHTML=`<div class="ph"><div><h1>Клиенты</h1><p id="ccount"></p></div><div class="acts"><button class="btn" data-act="importClients">${ico('in')}Импорт CSV</button><button class="btn" data-act="exportClients">${ico('down')}Экспорт CSV</button><button class="btn pri" data-act="newClient">${ico('plus')}Добавить клиента</button></div></div>
+  $('#view').innerHTML=`<div class="ph"><div><h1>Клиенты</h1><p id="ccount"></p></div><div class="acts"><button class="btn pri" data-act="newClient">${ico('plus')}Добавить клиента</button></div></div>
   <div class="tools"><input class="grow" id="cq" placeholder="Поиск по имени, телефону, почте, компании" value="${esc(CF.q)}" aria-label="Поиск клиентов">
    <select id="cs" aria-label="Статус"><option value="">Все статусы</option>${CSTAT.map(s=>`<option ${CF.status===s?'selected':''}>${s}</option>`).join('')}</select>
    <select id="cso" aria-label="Источник"><option value="">Все источники</option>${SOURCES.map(s=>`<option ${CF.source===s?'selected':''}>${s}</option>`).join('')}</select>
@@ -706,70 +605,6 @@ V.clients=()=>{
   $('#cq').oninput=e=>{CF.q=e.target.value;drawClients()};$('#cs').onchange=e=>{CF.status=e.target.value;drawClients()};$('#cso').onchange=e=>{CF.source=e.target.value;drawClients()};$('#cm').onchange=e=>{CF.mgr=e.target.value;drawClients()};
   drawClients();
 };
-
-
-A.importClients=()=>$('#cfile').click();
-function parseCSV(text){
-  const first=(text.split(/\r?\n/,1)[0]||'');
-  const delimiter=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?';':',';
-  const rows=[];let row=[],cell='',quoted=false;
-  for(let i=0;i<text.length;i++){
-    const ch=text[i],next=text[i+1];
-    if(ch==='"'&&quoted&&next==='"'){cell+='"';i++}
-    else if(ch==='"'){quoted=!quoted}
-    else if(ch===delimiter&&!quoted){row.push(cell);cell=''}
-    else if((ch==='\n'||ch==='\r')&&!quoted){
-      if(ch==='\r'&&next==='\n')i++;
-      row.push(cell);if(row.some(v=>v.trim()))rows.push(row);row=[];cell='';
-    }else cell+=ch;
-  }
-  row.push(cell);if(row.some(v=>v.trim()))rows.push(row);
-  return rows;
-}
-function importClientsFile(file){
-  const reader=new FileReader();
-  reader.onload=()=>{
-    try{
-      const rows=parseCSV(String(reader.result||'').replace(/^\uFEFF/,''));
-      if(rows.length<2)throw new Error('В файле нет строк с клиентами');
-      const headers=rows[0].map(x=>x.trim().toLowerCase());
-      const idx=(...names)=>headers.findIndex(h=>names.includes(h));
-      const map={name:idx('имя','фио','name'),phone:idx('телефон','phone'),email:idx('почта','email','e-mail'),company:idx('компания','company'),source:idx('источник','source'),manager:idx('ответственный','менеджер','manager'),status:idx('статус','status')};
-      if(map.name<0)throw new Error('Не найдена колонка «Имя»');
-      let added=0,duplicates=0;
-      rows.slice(1,1001).forEach(r=>{
-        const get=k=>map[k]>=0?String(r[map[k]]||'').trim():'';
-        const name=get('name'),phone=get('phone'),email=get('email');
-        if(!name)return;
-        const duplicate=clients.some(c=>(phone&&c.phone===phone)||(email&&c.email.toLowerCase()===email.toLowerCase()));
-        if(duplicate){duplicates++;return}
-        const manager=staff.find(m=>m.name.toLowerCase()===get('manager').toLowerCase());
-        clients.push({id:++nid,name,phone,email,company:get('company')||'Частное лицо',
-          source:SOURCES.includes(get('source'))?get('source'):SOURCES[0],
-          mgr:manager?manager.id:(staff[0]?.id||1),
-          status:CSTAT.includes(get('status'))?get('status'):'Новый',added:iso(0)});
-        added++;
-      });
-      scheduleClientSync();log(`импортировал(а) ${added} клиентов из CSV`);
-      toast(`Добавлено: ${added} · пропущено дублей: ${duplicates}`);
-      if(cur==='clients')drawClients();else V[cur]();
-    }catch(err){toast(err.message||'Не удалось прочитать CSV-файл')}
-  };
-  reader.readAsText(file,'UTF-8');
-}
-
-A.exportClients=()=>{
-  const q=CF.q.toLowerCase();
-  const rows=clients.filter(c=>(!q||(c.name+c.phone+c.email+c.company).toLowerCase().includes(q))&&(!CF.status||c.status===CF.status)&&(!CF.source||c.source===CF.source)&&(!CF.mgr||c.mgr==CF.mgr));
-  const cols=['Имя','Телефон','Почта','Компания','Источник','Ответственный','Статус','Дата добавления'];
-  const csv=[cols,...rows.map(c=>[c.name,c.phone,c.email,c.company,c.source,mgrOf(c.mgr).name,c.status,c.added||''])]
-    .map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
-  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download='alfa-plus-clients.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
-  toast(`Экспортировано клиентов: ${rows.length}`);
-};
-
 function drawClients(){
   const q=CF.q.toLowerCase();
   const l=clients.filter(c=>(!q||(c.name+c.phone+c.email+c.company).toLowerCase().includes(q))&&(!CF.status||c.status===CF.status)&&(!CF.source||c.source===CF.source)&&(!CF.mgr||c.mgr==CF.mgr));
@@ -786,8 +621,6 @@ function clientForm(id){
   modal({title:id?'Редактирование клиента':'Новый клиент',body:`<form class="form" id="cf">${fld('f_name','Имя и фамилия',c.name,{full:1,ph:'Иван Петров'})}${fld('f_phone','Телефон',c.phone,{ph:'+7 ___ ___-__-__'})}${fld('f_email','Электронная почта',c.email,{type:'email'})}${fld('f_company','Компания',c.company)}${fld('f_source','Источник обращения',c.source,{type:'select',opts:SOURCES})}${fld('f_mgr','Ответственный менеджер',c.mgr,{type:'select',opts:mgrOpts()})}${fld('f_status','Статус',c.status,{type:'select',opts:CSTAT})}</form>`,
    foot:[{label:'Отмена',fn:closeModal},{label:id?'Сохранить':'Добавить',cls:'pri',fn:()=>{
      if(!val('f_name')){toast('Укажите имя клиента');return}
-     const dup=clients.find(x=>x.id!==id&&((val('f_phone')&&x.phone===val('f_phone'))||(val('f_email')&&String(x.email||'').toLowerCase()===val('f_email').toLowerCase())));
-     if(dup){toast('Клиент с таким телефоном или почтой уже существует');return}
      const o={name:val('f_name'),phone:val('f_phone'),email:val('f_email'),company:val('f_company')||'Частное лицо',source:val('f_source'),mgr:+val('f_mgr'),status:val('f_status')};
      if(id)Object.assign(c,o);else{o.id=++nid;o.added=iso(0);clients.unshift(o);log(`добавил(а) клиента «${o.name}»`);fire('Создан клиент',{cid:o.id,mgr:o.mgr,what:o.name})}
      scheduleClientSync();closeModal();toast(id?'Изменения сохранены':'Клиент добавлен');if(cur==='clients')drawClients();else V[cur]()}}]});
@@ -1037,7 +870,7 @@ V.settings=()=>{
   const P={
    company:`<div class="form">${fld('c_n','Название компании',ME.company,{full:1})}${fld('c_ind','Сфера деятельности',ME.industry||INDS[0],{type:'select',opts:INDS})}${fld('c_i','ИНН',ME.inn)}${fld('c_c','Город',ME.city)}${fld('c_ph','Телефон компании',ME.cphone)}${fld('c_m','Почта компании',ME.cemail)}${fld('c_s','Сайт',ME.site)}${fld('c_a','Адрес',ME.addr,{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button></div><h4 style="margin:24px 0 8px">Источники клиентов и категории</h4><div class="form">${fld('c_src','Источники (через запятую)',SOURCES.join(', '),{full:1})}${fld('c_cat','Категории товаров (через запятую)',CATS.join(', '),{full:1})}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveLists">Сохранить списки</button></div>`,
    profile:`<div class="form">${fld('u_l','Электронная почта',ME.login,{dis:1})}${fld('u_n','Имя и фамилия',ME.name)}${fld('u_r','Должность',ME.position)}${fld('u_e','Почта',ME.email,{type:'email'})}${fld('u_p','Телефон',ME.phone)}</div><div style="margin-top:16px"><button class="btn pri" data-act="saveSet">Сохранить</button> <button class="btn" data-act="chPw">Сменить пароль</button></div>`,
-   integr:`<div>${['tg','wa','mail'].map(k=>{const c=ME.ch[k];return `<div class="chrow"><span class="chb" style="background:${CH[k].c};width:30px;height:30px;font-size:14px">${CH[k].l}</span><div style="min-width:0"><b>${CHINFO[k].n}</b> <span class="pill ${c.on?'ok':'gray'}">${c.on?'Подключено':'Не подключено'}</span><div class="mut" style="font-size:12px;margin-top:2px">${c.on?esc(c.v):CHINFO[k].hint}</div>${c.on?'':`<input id="ch_${k}" placeholder="${CHINFO[k].ph}" style="margin-top:8px" aria-label="${CHINFO[k].lb}">`}</div>${c.on?`<button class="btn sm dng" data-act="chOff" data-k="${k}">Отключить</button>`:`<button class="btn sm pri" data-act="chOn" data-k="${k}">Подключить</button>`}</div>`}).join('')}</div><p class="mut">Подключённый канал появляется в разделе «Сообщения»: переписка ведётся в ALFA + и сохраняется в карточке клиента. Токены и пароли не сохраняются. Автоматическая отправка и приём сообщений в Telegram и WhatsApp включатся вместе с серверной частью.</p>`,
+   integr:`<div>${['tg','wa','mail'].map(k=>{const c=ME.ch[k];return `<div class="chrow"><span class="chb" style="background:${CH[k].c};width:30px;height:30px;font-size:14px">${CH[k].l}</span><div style="min-width:0"><b>${CHINFO[k].n}</b> <span class="pill ${c.on?'ok':'gray'}">${c.on?'Подключено':'Не подключено'}</span><div class="mut" style="font-size:12px;margin-top:2px">${c.on?esc(c.v):CHINFO[k].hint}</div>${c.on?'':`<input id="ch_${k}" placeholder="${CHINFO[k].ph}" style="margin-top:8px" aria-label="${CHINFO[k].lb}">`}</div>${c.on?`<button class="btn sm dng" data-act="chOff" data-k="${k}">Отключить</button>`:`<button class="btn sm pri" data-act="chOn" data-k="${k}">Подключить</button>`}</div>`}).join('')}</div><p class="mut">Подключённый канал появляется в разделе «Сообщения»: переписка ведётся в alfa+ и сохраняется в карточке клиента. Токены и пароли не сохраняются. Автоматическая отправка и приём сообщений в Telegram и WhatsApp включатся вместе с серверной частью.</p>`,
    notif:`<div class="list">${sw('n','newDeal','Новые сделки','Сообщать о каждой новой заявке')}${sw('n','task','Задачи','Напоминать о сроках и просрочке')}${sw('n','miss','Пропущенные звонки','Мгновенное уведомление менеджеру')}${sw('n','mail','Ежедневный отчёт на почту','Сводка в 9:00')}</div>`,
    look:`<div class="row"><div class="grow"><b>Тема интерфейса</b><small>Сейчас: ${theme==='dark'?'тёмная':'светлая'}</small></div><div class="seg"><button data-act="th" data-t="dark" class="${theme==='dark'?'on':''}">Тёмная</button><button data-act="th" data-t="light" class="${theme==='light'?'on':''}">Светлая</button></div></div>`,
    data:`<div class="list"><div class="row"><div class="grow"><b>Аккаунт: ${esc(ME.login)}</b><small>Вход защищён Supabase Auth</small></div><button class="btn" data-act="logout">Выйти</button></div><div class="row"><div class="grow"><b>Резервная копия</b><small>Скачайте файл со всеми данными аккаунта</small></div><button class="btn" data-act="backup">${ico('down')}Скачать</button></div><div class="row"><div class="grow"><b>Восстановить из копии</b><small>Заменит текущие данные содержимым файла</small></div><button class="btn" data-act="restoreFile">Выбрать файл</button></div><div class="row"><div class="grow"><b>Очистить все данные</b><small>Удалит клиентов, сделки, задачи, товары и остальное. Аккаунт останется.</small></div><button class="btn dng" data-act="askClear">Очистить</button></div></div><p class="mut"><b>Где хранятся данные.</b> Аккаунт и пароль хранятся в Supabase Auth. Данные CRM пока сохраняются локально в этом браузере и на этом устройстве. Для синхронизации клиентов, сделок, задач и остальных разделов между устройствами потребуется отдельно подключить таблицы базы данных.</p>`
@@ -1085,8 +918,8 @@ async function saveWorkspaceCloud(silent=false){
   );
   cloudSaveBusy=false;
   if(error){
-    console.error('ALFA + cloud workspace save:',error);
-    if(!silent)toast('Не удалось сохранить ALFA +:  '+(error.message||'ошибка'));
+    console.error('alfa+ cloud workspace save:',error);
+    if(!silent)toast('Не удалось сохранить CRM в Supabase: '+(error.message||'ошибка'));
     return false;
   }
   cloudWorkspaceData=payload;
@@ -1105,8 +938,8 @@ async function loadClientsCloud(){
   cloudReady=false;
   const {data,error}=await sb.from('crm_workspaces').select('data').eq('user_id',CUR).maybeSingle();
   if(error){
-    console.error('ALFA + cloud workspace load:',error);
-    toast('Не удалось загрузить данные. Проверьте соединение и настройки доступа.');
+    console.error('alfa+ cloud workspace load:',error);
+    toast('Не удалось загрузить облачные данные. Проверьте соединение и права Supabase.');
     cloudReady=true;
     return;
   }
@@ -1135,7 +968,7 @@ async function loadClientsCloud(){
 const INDS=['Торговля','Услуги','Производство','IT и разработка','Строительство','Образование','Медицина','Другое'];
 const SIZES=['Только я','2–5','6–15','16–50','Больше 50'];
 const SRC_ALL=['Сайт','Реклама','Рекомендация','Выставка','Холодный звонок','Соцсети','Яндекс Директ','Авито','Telegram-канал','Партнёры','Email-рассылка'];
-const pitch=()=>`<div class="auth-pitch"><div class="brand" style="padding:0;color:#fff"><div class="logo" style="background:rgba(255,255,255,.2);box-shadow:none"><svg viewBox="0 0 24 24"><path d="M5 5l14 14" stroke="#fff" stroke-width="3.2" stroke-linecap="round" fill="none"/><path d="M19 5L5 19" stroke="#fff" stroke-opacity=".55" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg></div><span class="wm">ALFA <i>+</i></span></div><h2>Все клиенты, сделки и задачи в одном месте</h2><p>CRM, которую вы настраиваете под свой бизнес за несколько минут.</p><ul><li>Воронка продаж и учёт клиентов</li><li>Задачи, звонки и переписка</li><li>Склад, финансы и аналитика, которая считается сама</li><li>Автоматизация рутины</li></ul></div>`;
+const pitch=()=>`<div class="auth-pitch"><div class="amark" role="img" aria-label="alfa+">alfa<i>+</i></div><h2>Все клиенты, сделки и задачи в одном месте</h2><p>CRM, которую вы настраиваете под свой бизнес за несколько минут.</p><ul><li>Воронка продаж и учёт клиентов</li><li>Задачи, звонки и переписка</li><li>Склад, финансы и аналитика, которая считается сама</li><li>Автоматизация рутины</li></ul></div>`;
 
 /* Подключение каналов связи */
 const CHINFO={tg:{n:'Telegram',lb:'Токен бота от @BotFather',ph:'123456789:AAH…',hint:'Создайте бота у @BotFather и вставьте токен'},wa:{n:'WhatsApp',lb:'Номер WhatsApp Business',ph:'+7 900 000-00-00',hint:'Номер, на который клиенты будут писать'},mail:{n:'Почта',lb:'Рабочая почта для переписки',ph:'sales@company.ru',hint:'Адрес, с которого вы общаетесь с клиентами'}};
@@ -1146,12 +979,12 @@ function connectCh(k,v){v=(v||'').trim();
   log(`подключил(а) канал «${CHINFO[k].n}»`);return ''}
 const chOn=k=>!!ME.ch?.[k]?.on;
 const chList=()=>['tg','wa','mail'].filter(chOn);
-/* Правовые документы ALFA +. Перед публикацией заполните сведения об операторе и инфраструктуре. */
+/* Правовые документы alfa+. Перед публикацией заполните сведения об операторе и инфраструктуре. */
 const LEGAL_VERSION='2026-11-12';
 const LEGAL_DOCS={
  privacy:{title:'Политика конфиденциальности и обработки персональных данных',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года.</p><p><b>Оператор:</b> [указать полное ФИО физического лица или наименование ИП/организации, адрес и контактный e-mail]. До заполнения этих сведений документ не готов к публикации.</p>
- <h3>1. Общие положения</h3><p>Настоящая Политика описывает обработку персональных данных при использовании сервиса ALFA + CRM (далее — Сервис). Оператор обрабатывает данные в соответствии с применимым законодательством РФ, включая Федеральный закон № 152-ФЗ «О персональных данных».</p><p>Политика относится к данным посетителей и зарегистрированных пользователей. Если пользователь вносит в CRM данные своих клиентов, сотрудников или иных лиц, пользователь самостоятельно определяет законное основание такой обработки и обязан информировать этих лиц. Оператор ALFA + обрабатывает такие сведения в рамках предоставления Сервиса и на условиях отдельного поручения/договора обработки, который должен быть оформлен до промышленного запуска.</p>
+ <h3>1. Общие положения</h3><p>Настоящая Политика описывает обработку персональных данных при использовании сервиса alfa+ CRM (далее — Сервис). Оператор обрабатывает данные в соответствии с применимым законодательством РФ, включая Федеральный закон № 152-ФЗ «О персональных данных».</p><p>Политика относится к данным посетителей и зарегистрированных пользователей. Если пользователь вносит в CRM данные своих клиентов, сотрудников или иных лиц, пользователь самостоятельно определяет законное основание такой обработки и обязан информировать этих лиц. Оператор alfa+ обрабатывает такие сведения в рамках предоставления Сервиса и на условиях отдельного поручения/договора обработки, который должен быть оформлен до промышленного запуска.</p>
  <h3>2. Какие данные обрабатываются</h3><ul><li>Для регистрации и входа: имя, фамилия, номер телефона, адрес электронной почты, идентификатор аккаунта и технические данные аутентификации. Пароль передаётся сервису аутентификации и не должен сохраняться Оператором в открытом виде.</li><li>Для работы CRM: данные, которые пользователь самостоятельно вносит в рабочее пространство, включая сведения о клиентах, сделках, задачах, сотрудниках, товарах и коммуникациях. Пользователь должен вносить только данные, необходимые для его деловой цели.</li><li>Технические сведения: сведения о сессии, настройках интерфейса, событиях безопасности и журналов, если они формируются используемыми компонентами. Браузер также обращается к внешним ресурсам, используемым в коде (Google Fonts и CDN jsDelivr для библиотеки Supabase); их поставщики могут получать технические данные запроса, например IP-адрес и сведения о браузере.</li></ul><p>Не запрашиваются намеренно специальные категории персональных данных (например, сведения о здоровье, политических взглядах или интимной жизни), биометрические данные, паспортные данные и платёжные реквизиты. Не размещайте такие сведения в CRM, если для этого нет отдельного законного основания и согласованного процесса.</p>
  <h3>3. Цели и основания обработки</h3><ul><li>создание аккаунта, аутентификация и обеспечение доступа к Сервису;</li><li>предоставление функций CRM, сохранение рабочего пространства и синхронизация данных;</li><li>обеспечение безопасности, предотвращение злоупотреблений, диагностика ошибок и поддержка;</li><li>исполнение договора с пользователем и соблюдение обязательных требований закона.</li></ul><p>Основания: заключение и исполнение договора, обязанности по закону, а для тех операций, где это требуется, отдельное согласие субъекта персональных данных.</p>
  <h3>4. Действия с данными и минимизация</h3><p>Оператор может осуществлять сбор, запись, систематизацию, накопление, хранение, уточнение, использование, передачу уполномоченным обработчикам, блокирование и удаление данных. Состав данных ограничивается целями Сервиса. Пользователю не следует вносить избыточные сведения.</p>
@@ -1160,9 +993,9 @@ const LEGAL_DOCS={
  <h3>7. Права субъекта</h3><p>Субъект вправе запросить сведения об обработке, потребовать уточнения, блокирования или удаления данных, а также отозвать согласие, если обработка основана на согласии. Запрос направляется на [указать рабочий e-mail Оператора]. Отзыв согласия не влияет на законность обработки до его получения и не исключает обработку на иных законных основаниях.</p>
  <h3>8. Защита данных</h3><p>Оператор обязан принимать необходимые правовые, организационные и технические меры защиты. Фактические меры, ответственные лица, порядок реагирования на инциденты и уровень защищённости должны быть определены и документированы отдельно. Наличие этой Политики само по себе не подтверждает выполнение таких мер.</p>
  <h3>9. Контакты и изменения</h3><p>Контакт Оператора: [указать e-mail и почтовый адрес]. Политика может обновляться; актуальная редакция публикуется на странице Сервиса с датой изменения.</p>`},
- terms:{title:'Условия использования ALFA + CRM',html:`
+ terms:{title:'Условия использования alfa+ CRM',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года. <b>Правообладатель/исполнитель:</b> [указать полное ФИО или наименование, адрес и контакты].</p>
- <h3>1. Предмет</h3><p>ALFA + CRM — программный сервис для организации работы с клиентами, сделками, задачами и иными бизнес-данными. Условия регулируют доступ к Сервису и его использование.</p>
+ <h3>1. Предмет</h3><p>alfa+ CRM — программный сервис для организации работы с клиентами, сделками, задачами и иными бизнес-данными. Условия регулируют доступ к Сервису и его использование.</p>
  <h3>2. Аккаунт</h3><p>Пользователь обязан предоставлять достоверные регистрационные данные, обеспечивать конфиденциальность учётных данных и незамедлительно сообщать о подозрении на несанкционированный доступ. Пользователь отвечает за действия, совершённые через его аккаунт, если иное не установлено законом.</p>
  <h3>3. Допустимое использование</h3><p>Запрещается использовать Сервис для нарушения закона, прав третьих лиц, рассылки спама, загрузки вредоносного кода, попыток обхода защиты или несанкционированного доступа. Пользователь обязуется иметь законное основание для внесения и обработки персональных данных третьих лиц.</p>
  <h3>4. Данные пользователя</h3><p>Пользователь сохраняет права на загружаемые им данные и отвечает за их законность, точность, наличие необходимых уведомлений и согласий. Пользователь должен вносить только данные, необходимые для конкретной деловой цели, и не загружать специальные категории или биометрические данные без отдельной правовой оценки.</p>
@@ -1174,7 +1007,7 @@ const LEGAL_DOCS={
  <h3>10. Заключительные положения</h3><p>До публикации Оператор должен заполнить сведения о себе, определить тарифы и порядок оплаты (если применимо), а также проверить согласованность Условий с фактической работой Сервиса.</p>`},
  cookies:{title:'Политика использования Cookie и локального хранилища',html:`
  <p><b>Дата редакции:</b> 12 ноября 2026 года. Оператор: [указать сведения Оператора и контакт].</p>
- <h3>1. Что используется сейчас</h3><p>По текущему коду ALFA + не подключены рекламные cookie-файлы и сторонние системы веб-аналитики. Для работы интерфейса и входа используются необходимые технологии браузера: localStorage/session storage и механизмы хранения сессии библиотеки Supabase. В localStorage могут храниться выбранная тема интерфейса и локальная копия рабочего пространства (в том числе данные, которые пользователь внёс в CRM); библиотека авторизации может сохранять токен сессии. Это не обязательно cookie-файлы, но относится к технологиям хранения данных на устройстве.</p>
+ <h3>1. Что используется сейчас</h3><p>По текущему коду alfa+ не подключены рекламные cookie-файлы и сторонние системы веб-аналитики. Для работы интерфейса и входа используются необходимые технологии браузера: localStorage/session storage и механизмы хранения сессии библиотеки Supabase. В localStorage могут храниться выбранная тема интерфейса и локальная копия рабочего пространства (в том числе данные, которые пользователь внёс в CRM); библиотека авторизации может сохранять токен сессии. Это не обязательно cookie-файлы, но относится к технологиям хранения данных на устройстве.</p>
  <h3>2. Цели</h3><p>Эти технологии необходимы для входа в аккаунт, сохранения настроек, поддержания сессии и работы CRM. При отключении необходимого хранения некоторые функции Сервиса могут не работать.</p>
  <h3>3. Необязательные технологии</h3><p>На дату редакции необязательные аналитические и рекламные cookie не заявлены и не должны устанавливаться без отдельного информирования и получения требуемого согласия. Внешние Google Fonts и CDN jsDelivr загружаются как сторонние ресурсы; передача технических данных при их загрузке должна быть отдельно оценена Оператором, в том числе с учётом требований локализации и трансграничной передачи. Если в будущем будут добавлены аналитика, реклама, пиксели или иные необязательные технологии, Политика и интерфейс выбора должны быть обновлены до их включения.</p>
  <h3>4. Управление</h3><p>Пользователь может ограничить хранение в настройках браузера. Удаление локального хранилища может привести к выходу из аккаунта, сбросу темы или потере несинхронизированных локальных изменений. Согласие на необязательные cookie не запрашивается, пока такие технологии не используются.</p>
@@ -1182,7 +1015,7 @@ const LEGAL_DOCS={
  pd:{title:'Согласие на обработку персональных данных',html:`
  <p><b>Оператор:</b> [указать полное ФИО/наименование, адрес и контактный e-mail]. <b>Версия:</b> 12.11.2026.</p>
  <p>Я, субъект персональных данных, свободно, своей волей и в своём интересе даю Оператору согласие на обработку следующих данных: имя, фамилия, номер телефона, адрес электронной почты, идентификатор аккаунта и технические сведения, необходимые для аутентификации и безопасности. Пароль обрабатывается сервисом аутентификации в защищённом виде; Оператор не должен получать или хранить его в открытом виде.</p>
- <p><b>Цели:</b> регистрация и идентификация пользователя, создание и защита аккаунта, предоставление доступа к функциям ALFA + CRM, сохранение рабочего пространства, синхронизация данных, техническая поддержка и обеспечение безопасности.</p>
+ <p><b>Цели:</b> регистрация и идентификация пользователя, создание и защита аккаунта, предоставление доступа к функциям alfa+ CRM, сохранение рабочего пространства, синхронизация данных, техническая поддержка и обеспечение безопасности.</p>
  <p><b>Операции:</b> сбор, запись, систематизация, накопление, хранение, уточнение, использование, передача уполномоченным обработчикам в объёме, необходимом для работы Сервиса, блокирование и удаление.</p>
  <p><b>Срок:</b> до достижения целей обработки или прекращения использования аккаунта, если более длительное хранение не требуется законом; конкретные сроки удаления и резервного копирования должны быть установлены Оператором.</p>
  <p>Согласие может быть отозвано обращением на [указать e-mail Оператора]. Отзыв может повлечь невозможность дальнейшего предоставления функций, для которых данные необходимы. Оператор вправе продолжить обработку при наличии иного законного основания.</p>
@@ -1194,7 +1027,7 @@ function showCookieNotice(){
  const auth=document.getElementById('auth');if(cookieSeen||!auth||auth.hidden){document.getElementById('cookieBanner')?.remove();return}
  if(document.getElementById('cookieBanner'))return;
  const b=document.createElement('section');b.className='cookie-banner';b.id='cookieBanner';b.setAttribute('role','region');b.setAttribute('aria-label','Уведомление об использовании cookie');
- b.innerHTML='<div><b>Мы используем cookie-файлы</b><p>ALFA + использует необходимые cookie и похожие технологии хранения, чтобы обеспечивать вход в аккаунт, сохранять настройки и поддерживать работу CRM. Рекламные и необязательные аналитические cookie сейчас не используются. Нажимая «Принять», вы подтверждаете, что ознакомились с уведомлением. <button type="button" class="link" data-legal="cookies">Политика Cookie</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Принять</button></div>';
+ b.innerHTML='<div><b>Мы используем cookie-файлы</b><p>alfa+ использует необходимые cookie и похожие технологии хранения, чтобы обеспечивать вход в аккаунт, сохранять настройки и поддерживать работу CRM. Рекламные и необязательные аналитические cookie сейчас не используются. Нажимая «Принять», вы подтверждаете, что ознакомились с уведомлением. <button type="button" class="link" data-legal="cookies">Политика Cookie</button></p></div><div class="cookie-actions"><button type="button" class="btn pri" id="cookieAccept">Принять</button></div>';
  document.body.appendChild(b);document.getElementById('cookieAccept').onclick=()=>{try{localStorage.setItem(key,JSON.stringify({acknowledged:true,at:new Date().toISOString(),version:LEGAL_VERSION}))}catch(e){}b.remove()};
 }
 function initLegalUi(){
@@ -1211,7 +1044,7 @@ function authMessage(e){
 }
 function showAuth(mode='login',notice=''){
   $('#app').hidden=true;const a=$('#auth');a.hidden=false;a.className='auth';const reg=mode==='reg';
-  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в ALFA +'}</h2><p class="mut" style="margin:0">${reg?'Для регистрации нужны только имя, фамилия, телефон, почта и пароль.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_first','Имя','',{ph:'Иван'})+fld('r_last','Фамилия','',{ph:'Иванов'})+fld('r_phone','Телефон','',{type:'tel',ph:'+7 900 000-00-00'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'})+`<label class="legal-check"><input id="r_terms" type="checkbox" required><span>Принимаю <a href="#" data-legal="terms">Условия использования</a> и подтверждаю ознакомление с <a href="#" data-legal="privacy">Политикой конфиденциальности</a>.</span></label><label class="legal-check"><input id="r_pd" type="checkbox" required><span>Даю отдельное согласие на обработку моих персональных данных в целях регистрации и предоставления доступа к CRM согласно <a href="#" data-legal="pd">Согласию на обработку персональных данных</a>.</span></label>`:''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div><div class="legal-links"><button type="button" data-legal="privacy">Политика конфиденциальности</button><button type="button" data-legal="terms">Условия использования</button><button type="button" data-legal="cookies">Политика Cookie</button></div></form></div>`;
+  a.innerHTML=`<div class="auth-box">${pitch()}<form class="auth-form" id="af" novalidate><h2>${reg?'Создайте аккаунт':'Вход в alfa+'}</h2><p class="mut" style="margin:0">${reg?'Для регистрации нужны только имя, фамилия, телефон, почта и пароль.':'Введите электронную почту и пароль от вашего аккаунта.'}</p>${reg?fld('r_first','Имя','',{ph:'Иван'})+fld('r_last','Фамилия','',{ph:'Иванов'})+fld('r_phone','Телефон','',{type:'tel',ph:'+7 900 000-00-00'}):''}${fld('r_email','Электронная почта','',{type:'email',ph:'name@example.com'})}${fld('r_pass','Пароль','',{type:'password',ph:reg?'Не короче 6 символов':''})}${reg?fld('r_pass2','Повторите пароль','',{type:'password'})+`<label class="legal-check"><input id="r_terms" type="checkbox" required><span>Принимаю <a href="#" data-legal="terms">Условия использования</a> и подтверждаю ознакомление с <a href="#" data-legal="privacy">Политикой конфиденциальности</a>.</span></label><label class="legal-check"><input id="r_pd" type="checkbox" required><span>Даю отдельное согласие на обработку моих персональных данных в целях регистрации и предоставления доступа к CRM согласно <a href="#" data-legal="pd">Согласию на обработку персональных данных</a>.</span></label>`:''}<div class="err" id="aerr" role="alert">${esc(notice)}</div><button class="btn pri" style="justify-content:center">${reg?'Создать аккаунт':'Войти'}</button><div class="mut" style="text-align:center">${reg?'Уже есть аккаунт? <button type="button" class="link" id="asw">Войти</button>':'Нет аккаунта? <button type="button" class="link" id="asw">Зарегистрироваться</button>'}</div><div class="legal-links"><button type="button" data-legal="privacy">Политика конфиденциальности</button><button type="button" data-legal="terms">Условия использования</button><button type="button" data-legal="cookies">Политика Cookie</button></div></form></div>`;
   showCookieNotice();
   $('#asw').onclick=()=>showAuth(reg?'login':'reg');
   $('#af').onsubmit=async e=>{e.preventDefault();const btn=$('#af').querySelector('button[type="submit"],button:not([type])');const err=t=>{$('#aerr').textContent=t};
@@ -1277,7 +1110,7 @@ function finishOB(){
   ME.onboarded=true;flush();if(cloudReady)scheduleWorkspaceSync();startApp();toast('Готово! Добавьте первого клиента');
 }
 /* Резервная копия */
-A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`alfa-plus-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
+A.backup=async()=>{const d=await claude.use('downloads');if(!d){toast('Скачивание недоступно в этом окне');return}try{await d.save({filename:`alfa-${ME.login}-${iso(0)}.json`,data:snap()});toast('Резервная копия сохранена')}catch(e){toast('Сохранение отменено')}};
 A.restoreFile=()=>$('#rfile').click();
 /* Запуск */
 async function init(){
@@ -1287,8 +1120,7 @@ async function init(){
   $('#bellBtn').onclick=e=>{e.stopPropagation();drawBell();const p=$('#bellPop');p.hidden=!p.hidden};
   $('#meBtn').onclick=e=>{e.stopPropagation();const p=$('#mePop');p.hidden=!p.hidden};
   $('#gs').oninput=e=>gsearch(e.target.value);$('#gs').onfocus=e=>gsearch(e.target.value);
-  $('#cfile').onchange=e=>{const f=e.target.files[0];if(f)importClientsFile(f);e.target.value=''};
-  $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.lists)throw 0;const lg=ME.login,em=ME.email;restore(r.result);resetME({...ME,login:lg,onboarded:true});flush();paintShell();drawNav();toast('Данные восстановлены');go('home')}catch(x){toast('Файл не похож на резервную копию ALFA +')}};r.readAsText(f);e.target.value=''};
+  $('#rfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o.lists)throw 0;const lg=ME.login,em=ME.email;restore(r.result);resetME({...ME,login:lg,onboarded:true});flush();paintShell();drawNav();toast('Данные восстановлены');go('home')}catch(x){toast('Файл не похож на резервную копию alfa+')}};r.readAsText(f);e.target.value=''};
   window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(h&&h!==cur&&!$('#app').hidden)go(h)});
   ['home','analytics','staff','finance'].forEach(k=>{const f=V[k];V[k]=()=>{recompute();f()}});
   window.addEventListener('pagehide',flush);
